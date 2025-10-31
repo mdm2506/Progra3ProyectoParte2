@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Durazno</title>
+  <!-- Enlaza el archivo CSS -->
+  <link rel="stylesheet" href="CSS/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <!-- ======= ENCABEZADO CON NAVEGACIÓN ======= -->
+  <header id="site-header">
+    <nav class="Navbar" aria-label="Principal">
+      <!-- Logo con link al inicio -->
+      <div class="logo">
+        <a href="#Hero" aria-label="Ir a inicio">
+          <img src="IMG/Logo.png" alt="logo">Durazno</a>
+      </div>
+      <!-- Menú de navegación -->
+      <ul class="nav-links">
+       <li><a href="#AboutUs">Sobre nosotros</a></li>
+       <li><a href="#Seasons">Temporada</a></li>
+       <li><a href="#Services">Servicios</a></li>
+       <li><a href="#Testimonies">Testimonios</a></li>
+       <li><a href="#formulario-seccion">Contacto</a></li>
+     </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ======= SECCIÓN HERO (PORTADA) ======= -->
+    <section id="Hero" class="content alt full">
+      <div class="hero-grid">
+        <!-- Galería de imágenes del inicio -->
+        <div class="tile"><img src="IMG/Hero1.png"></div>
+        <div class="tile"><img src="IMG/Hero2.png"></div>
+        <div class="tile"><img src="IMG/Hero3.png"></div>
+        <div class="tile"><img src="IMG/Hero4.png"></div>
+        <div class="tile"><img src="IMG/Hero5.png"></div>
+        <div class="tile"><img src="IMG/Hero6.png"></div>
+        <div class="tile"><img src="IMG/Hero7.png"></div>
+        <div class="tile"><img src="IMG/Hero8.png"></div>
+        <div class="tile"><img src="IMG/Hero9.png"></div>
+      </div>
+
+      <!-- Texto y botón principal -->
+       <div class="herooo">
+       <h1 class="hero-slogan">Vestimos tus sueños</h1>
+     <a href="#Seasons" class="cta-button" aria-label="Explorar colección de temporada">Explora Nuestra Colección</a>
+      </div>
+    </section>
+
+    <!-- ======= SOBRE NOSOTROS ======= -->
+   <section id="AboutUs" class="content alt full"> 
+  <div class="texto">
+    <h2>Sobre nosotros</h2>
+    <p>La creación de la empresa Durazno surge como una respuesta a la necesidad de generar ingresos económicos que,
+      al mismo tiempo, permitan a su fundadora continuar con sus estudios universitarios en una institución pública,
+      donde la carga académica y los horarios resultan exigentes.
+      Luego de un proceso de reflexión y análisis de opciones, se tomó la decisión de establecer una pequeña fábrica
+      dedicada a la confección de pijamas bajo el lema <em>“Vestimos tus sueños”</em>.
+    </p>
+  </div>
+
+  <div class="misvis">
+    <div class="Mision">
+      <h2>Misión</h2>
+      <p>La iniciativa es liderada por Keysha Pizarro, estudiante de Administración de Empresas en la
+        Universidad de Costa Rica (UCR), quien, motivada por su vocación emprendedora y su deseo de superación
+        personal, busca consolidar este proyecto como una alternativa sostenible que le permita crecer tanto en el
+        ámbito académico como en el profesional.</p>
+    </div>
+
+    <div class="Vision">
+      <h2>Visión</h2>
+      <p>Ser una empresa reconocida a nivel nacional por la calidad y diseño de nuestras pijamas, convirtiéndonos en
+        la primera opción para quienes buscan comodidad y estilo en su ropa de dormir. La empresa se ubica en Santa Cruz,
+        Guanacaste, Costa Rica. Su propósito es ofrecer productos de calidad que combinen comodidad, diseño y accesibilidad.</p>
+    </div>
+    
+  </div>
+ <div class="imagen" role="img" aria-label="Equipo Durazno"></div>
+</section>
+
+    <!-- ======= PRODUCTOS DE TEMPORADA ======= -->
+    <section id="Seasons" class="content full">
+      <h2 class = "Section-title">Pijamas más vendidas de la temporada</h2>
+      <section class="pijamas-cards-section">
+            <!-- Cada tarjeta muestra un producto con su precio -->
+            <div class="pijama-card">
+                <img src="./IMG/pijama blanca floral.png" alt="Pijama blanca floral">
+                <h2>Pijama blanca floral</h2>
+                <p>Pijama inspirada en diseños florales, perfecta para un look primaveral.</p>
+                <span class="pijama-price">₡14,990</span>
+                <button class="more-info-btn" data-product="pijama-blanca-floral">Más información</button>
+            </div>
+            <div class="pijama-card">
+                <img src="./IMG/pijama duo.png" alt="Pijama duo">
+                <h2>Pijama dúo en rosa y burdeos</h2>
+                <p>Combinación perfecta para llevar con un ser querido.</p>
+                <span class="pijama-price">₡26,545</span>
+                <button class="more-info-btn" data-product="pijama-duo">Más información</button>
+            </div>
+            <div class="pijama-card">
+                <img src="./IMG/pijama estampado oso.png" alt="Pijama beige con estampado de oso">
+                <h2>Pijama beige con estampado de oso</h2>
+                <p>Pijama hermosa y tierna para dormir cómodamente en noches frías.</p>
+                <span class="pijama-price">₡18,575</span>
+                <button class="more-info-btn" data-product="pijama-oso">Más información</button>
+            </div>
+            <div class="pijama-card">
+                <img src="./IMG/Pijama color azul marino.png" alt="Conjunto pijama azul marino">
+                <h2>Conjunto pijama azul marino</h2>
+                <p>Pijama perfecta para un look elegante y cómodo.</p>
+                <span class="pijama-price">₡14,200</span>
+                <button class="more-info-btn" data-product="pijama-azul-marino">Más información</button>
+            </div>
+            <div class="pijama-card">
+                <img src="./IMG/Pijama color vino.png" alt="Pijama color vino">
+                <h2>Pijama color vino con detalles blancos</h2>
+                <p>Combinación perfecta para un look elegante y cómodo.</p>
+                <span class="pijama-price">₡17,050</span>
+                <button class="more-info-btn" data-product="pijama-vino">Más información</button>
+            </div>
+            </section>
+    </section>
+
+    <!-- Modal para más información -->
+    <div id="product-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="modal-body">
+          <img id="modal-img" src="" alt="Producto">
+          <h2 id="modal-title"></h2>
+          <p id="modal-description"></p>
+          <div class="sizes">
+            <h3>Tallas disponibles:</h3>
+            <div id="modal-sizes"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= SERVICIOS ======= -->
+    <section id="Services" class="content alt full">
+      <h2 class = "Section-title">Servicios que ofrecemos</h2>
+      <div id="Services-flex-cards">
+
+        <!-- Servicio 1 -->
+        <div class="card">
+          <img src="IMG/servicio1.1.jpg" alt="" class="service-img">
+          <div class="intro">
+            <h2>Conjuntos de pijamas</h2>
+            <p>Tenemos pijamas a juego para compartir con tus seres queridos para ambos lucir espectacular</p>
+          </div>
+        </div>
+
+        <!-- Servicio 2 -->
+        <div class="card">
+          <img src="IMG/servicio2.1.jpg" alt="" class="service-img">
+          <div class="intro">
+            <h2>Elije propio diseño</h2>
+            <p>Puedes hacernos un pedido personalizado según tus preferencias</p>
+          </div>
+        </div>
+
+        <!-- Servicio 3 -->
+        <div class="card">
+          <img src="IMG/servicio3.1.jpg" alt="" class="service-img">
+          <div class="intro">
+            <h2>Envios a Domicilio</h2>
+            <p>¿No puedes venir a retirar tus productos? <br> No tienes que preocuparte, nosotros te los haremos llegar hasta tu lugar de residencia</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======= TESTIMONIOS ======= -->
+    <section id="Testimonies" class="content full">
+      <!-- titulo para apartado de reseñas -->
+       <h2 class="Section-title">Qué opinan nuestros clientes</h2>
+
+  <div class="carousel-container">
+    <!-- Botón izquierda -->
+    <button class="left arrow">&#10094;</button>
+
+    <!-- Carrusel de testimonios -->
+    <div class="carousel">
+      <!-- Grupo 1 -->
+      <div class="carousel-group">
+        <div class="carousel-item">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Ana Rodríguez">
+          <p class="rating">⭐⭐⭐⭐⭐</p>
+          <p>Las pijamas son súper cómodas y frescas, perfectas para el clima cálido. ¡Recomendadísimas!</p>
+          <h3>Ana Rodríguez</h3>
+        </div>
+        <div class="carousel-item">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Méndez">
+          <p class="rating">⭐⭐⭐⭐⭐</p>
+          <p>Muy buena calidad, los colores son suaves y agradables. La talla quedó perfecta.</p>
+          <h3>Carlos Méndez</h3>
+        </div>
+        <div class="carousel-item">
+          <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Lucía Fernández">
+          <p class="rating">⭐⭐⭐⭐⭐</p>
+          <p>Me encantaron los diseños, se nota el detalle y la dedicación. Compraré de nuevo.</p>
+          <h3>Lucía Fernández</h3>
+        </div>
+      </div>
+
+      <!-- Grupo 2 -->
+      <div class="carousel-group">
+        <div class="carousel-item">
+          <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="José Ramírez">
+          <p class="rating">⭐⭐⭐⭐⭐</p>
+          <p>La tela es ligera y cómoda. El envío fue rápido. Muy contento con la compra.</p>
+          <h3>José Ramírez</h3>
+        </div>
+        <div class="carousel-item">
+          <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="María López">
+          <p class="rating">⭐⭐⭐⭐⭐</p>
+          <p>¡Son las pijamas más lindas que he tenido! Suaves y con un olor a nuevo sabroso al abrir el paquete.</p>
+          <h3>María López</h3>
+        </div>
+        <div class="carousel-item">
+          <img src="https://randomuser.me/api/portraits/men/27.jpg" alt="Fernando Castillo">
+          <p class="rating">⭐⭐⭐⭐⭐</p>
+          <p>Excelente servicio, la pijama llegó rápido y la tela es de altísima calidad.</p>
+          <h3>Fernando Castillo</h3>
+        </div>
+      </div>
+
+      <!-- Grupo 3 -->
+      <div class="carousel-group">
+        <div class="carousel-item">
+          <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Paula Jiménez">
+          <p class="rating">⭐⭐⭐⭐⭐</p>
+          <p>Muy bonitas y cómodas, definitivamente volvería a comprar más prendas.</p>
+          <h3>Paula Jiménez</h3>
+        </div>
+        <div class="carousel-item">
+          <img src="https://randomuser.me/api/portraits/men/14.jpg" alt="Diego Solís">
+          <p class="rating">⭐⭐⭐⭐⭐</p>
+          <p>Increíble relación calidad-precio. Me sorprendió lo suaves que son.</p>
+          <h3>Diego Solís</h3>
+        </div>
+        <div class="carousel-item">
+          <img src="https://randomuser.me/api/portraits/women/53.jpg" alt="Valeria Torres">
+          <p class="rating">⭐⭐⭐⭐⭐</p>
+          <p>El empaque estaba precioso y todo huele delicioso, se nota la dedicación en cada detalle.</p>
+          <h3>Valeria Torres</h3>
+        </div>
+      </div>
+
+      <!-- Grupo 4 -->
+      <div class="carousel-group">
+        <div class="carousel-item">
+          <img src="https://randomuser.me/api/portraits/men/9.jpg" alt="Andrés Vega">
+          <p class="rating">⭐⭐⭐⭐⭐</p>
+          <p>La pijama es muy cómoda, aunque pedí una talla a mi gusto y ahora no puedo dormir sin ella.</p>
+          <h3>Andrés Vega</h3>
+        </div>
+        <div class="carousel-item">
+          <img src="https://randomuser.me/api/portraits/men/31.jpg" alt="Javier Martínez">
+          <p class="rating">⭐⭐⭐⭐⭐</p>
+          <p>Me siento genial con esta pijama, no la quiero quitar nunca.</p>
+          <h3>Javier Martínez</h3>
+        </div>
+        <div class="carousel-item">
+          <img src="https://randomuser.me/api/portraits/women/18.jpg" alt="Lorena García">
+          <p class="rating">⭐⭐⭐⭐⭐</p>
+          <p>Excelente calidad, muy suave y bonita.</p>
+          <h3>Lorena García</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón derecha -->
+    <button class="right arrow">&#10095;</button>
+  </div>
+</section>
+
+<!-- ======= FORMULARIO DE CONTACTO ======= -->
+<section id="formulario-seccion" class="content alt full">
+  <div class="contenedor-formulario">
+    <h2 class="titulo-principal">¡Contáctanos!</h2>
+    <p class="subtitulo">Ingresa tus datos para contactarnos</p>
+
+    <form novalidate>
+      <div class="campo">
+        <input type="text" id="nombre" name="name" class="input-campo" required
+               placeholder="Pon tu nombre completo (ej. nombre apellido)" autocomplete="name">
+        <label for="nombre" class="etiqueta">Tu Nombre Completo *</label>
+        <div class="mensaje-error">Este campo es obligatorio</div>
+      </div>
+
+      <div class="campo">
+        <input type="email" id="correo" name="email" class="input-campo" required
+               placeholder="Tu correo electrónico (ej. correo@example.com)" autocomplete="email">
+        <label for="correo" class="etiqueta">Tu Correo Electrónico *</label>
+        <div class="mensaje-error">Por favor, ingresa un correo electrónico válido</div>
+      </div>
+
+      <div class="campo">
+        <input type="tel" id="telefono" name="phone" class="input-campo" required
+               placeholder="Tu número de teléfono (ej. +1234567890)" autocomplete="tel">
+        <label for="telefono" class="etiqueta">Tu Teléfono *</label>
+        <div class="mensaje-error">Este campo es obligatorio</div>
+      </div>
+
+      <div class="campo">
+        <select id="asunto" name="subject" class="select-campo" required>
+          <option value="" selected disabled hidden>¿De qué quieres hablar? *</option>
+          <option value="support">Necesito Ayuda</option>
+          <option value="feedback">Quiero Opinar</option>
+          <option value="order">Hacer Pedido</option>
+          <option value="other">Otra Cosa</option>
+        </select>
+        <label for="asunto" class="etiqueta">¿De qué quieres hablar? *</label>
+        <div class="mensaje-error">Este campo es obligatorio</div>
+      </div>
+
+      <div class="campo">
+        <textarea id="mensaje" name="message" class="textarea-campo" required maxlength="500"
+                  placeholder="Escribe tu mensaje aquí..."></textarea>
+        <div class="contador-caracteres">0 / 500</div>
+        <label for="mensaje" class="etiqueta">Escribe tu mensaje aquí *</label>
+        <div class="mensaje-error">Este campo es obligatorio</div>
+      </div>
+      <!--Boton de enviar-->
+      <button type="submit" class="boton-enviar disable-button" disabled>
+        Enviar Mi Mensaje
+      </button>
+    </form>
+  </div>
+</section>
+
+  </main>
+  <!-- ======= PIE DE PÁGINA ======= -->
+  <footer>
+    <div class="social-links">
+      <!-- Links a redes sociales -->
+      <a href="https://www.facebook.com" class="social-link tipo2 facebook" aria-label="Facebook">
+        Facebook
+      </a>
+      <a href="https://www.instagram.com" class="social-link tipo2 instagram" aria-label="Instagram">
+        Instagram
+      </a>
+          <a href="https://wa.me/1234567890" class="social-link tipo2 whatsapp" aria-label="WhatsApp">
+        WhatsApp
+      </a>
+      <p>&copy; 2025 Durazno. Todos los derechos reservados.</p>
+  </footer>
+  <!-- Script JS -->
+  <script src="JS/script.js"></script>
+</body>
+</html>
