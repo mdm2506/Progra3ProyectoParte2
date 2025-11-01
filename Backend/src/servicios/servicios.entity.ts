@@ -6,8 +6,8 @@ export class Servicio {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
-    nombre: string;
+    @Column( { unique: true } )
+    titulo: string;
 
     @Column()
     descripcion: string;
