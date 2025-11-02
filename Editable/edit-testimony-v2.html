@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Editor de Testimonios — Nuevo</title>
+    <style>
+      :root{--accent:#e06f63;--muted:#f3f3f3;--danger:#cc5a4a}
+      body{font-family:Inter, system-ui, Arial, Helvetica, sans-serif;background:#faf8f6;color:#222;padding:18px}
+      .wrap{max-width:1100px;margin:18px auto;display:grid;grid-template-columns:1fr 420px;gap:20px}
+      .card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 6px 22px rgba(0,0,0,0.06)}
+      h1{margin:0 0 8px;color:var(--accent)}
+      .list{max-height:64vh;overflow:auto}
+      table{width:100%;border-collapse:collapse}
+      th,td{padding:10px;text-align:left;border-bottom:1px solid #eee;font-size:0.95rem}
+      tr:hover{background:var(--muted)}
+      .small{font-size:0.85rem;color:#666}
+      .actions{display:flex;gap:8px}
+      button{padding:8px 12px;border-radius:8px;border:0;cursor:pointer}
+      .primary{background:var(--accent);color:#fff}
+      .ghost{background:transparent;border:1px solid #ddd}
+      .danger{background:var(--danger);color:#fff}
+      form{display:flex;flex-direction:column;gap:10px}
+      label{font-weight:600;font-size:0.9rem}
+      input[type=text],textarea{padding:10px;border-radius:8px;border:1px solid #e6e6e6}
+      textarea{min-height:120px;resize:vertical}
+      .preview-row{display:flex;gap:12px;align-items:center}
+      .avatar{width:64px;height:64px;border-radius:10px;object-fit:cover;border:2px solid var(--accent)}
+      .status{font-size:0.95rem;margin-top:6px}
+      @media(max-width:980px){.wrap{grid-template-columns:1fr} }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="card">
+        <h1>Testimonios</h1>
+        <p class="small">Lista de testimonios en la base de datos. Haz click en un registro para editarlo o usa el botón <strong>Nuevo</strong>.</p>
+        <div style="margin:10px 0" class="actions">
+          <button id="btn-new" class="ghost">Nuevo</button>
+          <button id="btn-refresh" class="ghost">Refrescar</button>
+        </div>
+        <div class="list card" id="list-area" style="margin-top:10px;padding:0">
+          <table id="tbl">
+            <thead><tr><th>Nombre</th><th>Rating</th><th class="small">Testimonio</th><th></th></tr></thead>
+            <tbody id="tbl-body"><tr><td colspan="4" class="small">Cargando...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <h1 id="form-title">Crear / Editar</h1>
+        <form id="form">
+          <input type="hidden" id="id" />
+          <div>
+            <label for="name">Nombre</label>
+            <input id="name" type="text" placeholder="Nombre del cliente" required />
+          </div>
+          <div>
+            <label for="rating">Rating</label>
+            <input id="rating" type="text" placeholder="⭐⭐⭐⭐⭐" />
+          </div>
+          <div>
+            <label for="img">URL de la imagen</label>
+            <input id="img" type="text" placeholder="https://...jpg" />
+          </div>
+          <div>
+            <label for="text">Testimonio</label>
+            <textarea id="text" placeholder="Texto..." required></textarea>
+          </div>
+          <div class="preview-row">
+            <img id="img-preview" class="avatar" src="../html/IMG/Logo.png" alt="preview" />
+            <div style="flex:1">
+              <div class="small">Vista previa</div>
+              <div id="preview-name" style="font-weight:700;color:var(--accent)"></div>
+              <div id="preview-rating" class="small" style="color:#f5a623"></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:6px">
+            <button id="btn-save" class="primary" type="submit">Guardar</button>
+            <button id="btn-cancel" class="ghost" type="button">Cancelar</button>
+            <button id="btn-delete" class="danger" type="button">Eliminar</button>
+          </div>
+          <div id="status" class="status"></div>
+        </form>
+      </div>
+    </div>
+
+   <script src="../html/JS/testimonies-api.js"></script>
+    <script>
+      (function(){
+        const tblBody = document.getElementById('tbl-body');
+        const btnRefresh = document.getElementById('btn-refresh');
+        const btnNew = document.getElementById('btn-new');
+        const form = document.getElementById('form');
+        const idI = document.getElementById('id');
+        const nameI = document.getElementById('name');
+        const ratingI = document.getElementById('rating');
+        const imgI = document.getElementById('img');
+        const textI = document.getElementById('text');
+        const imgPreview = document.getElementById('img-preview');
+        const previewName = document.getElementById('preview-name');
+        const previewRating = document.getElementById('preview-rating');
+        const status = document.getElementById('status');
+        const btnCancel = document.getElementById('btn-cancel');
+        const btnDelete = document.getElementById('btn-delete');
+
+        let data = [];
+
+        function setStatus(msg, isError){ status.textContent = msg || ''; status.style.color = isError ? '#b00020' : '#333'; }
+        function setLoading(el, on){ el.disabled = on; }
+
+        async function apiGetAll(){
+          try{
+            if (window.TestimoniesAPI && window.TestimoniesAPI.getAll) return await window.TestimoniesAPI.getAll();
+            const r = await fetch('/testimonies'); if (!r.ok) throw new Error(r.status);
+            return await r.json();
+          }catch(e){ throw e; }
+        }
+
+        function renderTable(items){
+          data = items || [];
+          if (!data.length){ tblBody.innerHTML = '<tr><td colspan="4" class="small">No hay testimonios</td></tr>'; return; }
+          tblBody.innerHTML = '';
+          data.forEach(t => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td><strong>${escapeHtml(t.name||'')}</strong><div class="small">${new Date(t.createdAt||'').toLocaleString()||''}</div></td>
+              <td>${escapeHtml(t.rating||'')}</td>
+              <td class="small">${escapeHtml((t.text||'').slice(0,120))}</td>
+              <td style="text-align:right"><button data-id="${t.id}" class="ghost btn-edit">Editar</button></td>
+            `;
+            tblBody.appendChild(tr);
+          });
+          // attach edit handlers
+          tblBody.querySelectorAll('.btn-edit').forEach(b => b.addEventListener('click', ()=> selectForEdit(b.dataset.id)));
+        }
+
+        function escapeHtml(str){ if(!str) return ''; return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+
+        async function loadAndRender(){
+          setStatus('Cargando...');
+          try{
+            const list = await apiGetAll();
+            renderTable(list);
+            setStatus('');
+          }catch(err){ console.error(err); setStatus('Error cargando testimonios: '+(err.message||err), true); }
+        }
+
+        function clearForm(){ idI.value=''; nameI.value=''; ratingI.value=''; imgI.value=''; textI.value=''; imgPreview.src='IMG/Logo.png'; previewName.textContent=''; previewRating.textContent=''; document.getElementById('form-title').textContent='Crear / Editar'; }
+
+        async function selectForEdit(id){
+          const t = data.find(x => String(x.id) === String(id));
+          if (!t) return setStatus('Registro no encontrado', true);
+          idI.value = t.id; nameI.value = t.name||''; ratingI.value = t.rating||''; imgI.value = t.img||''; textI.value = t.text||'';
+          imgPreview.src = t.img || 'IMG/Logo.png'; previewName.textContent = t.name||''; previewRating.textContent = t.rating||'';
+          document.getElementById('form-title').textContent = 'Editar — ' + (t.name||'');
+        }
+
+        imgI.addEventListener('input', ()=>{ imgPreview.src = imgI.value || 'IMG/Logo.png'; });
+        [nameI, ratingI].forEach(i=> i.addEventListener('input', ()=>{ previewName.textContent = nameI.value; previewRating.textContent = ratingI.value; }));
+
+        form.addEventListener('submit', async (e)=>{
+          e.preventDefault();
+          const payload = { name: nameI.value.trim(), rating: ratingI.value.trim(), img: imgI.value.trim(), text: textI.value.trim() };
+          if (!payload.name || !payload.text) return setStatus('Nombre y testimonio son requeridos', true);
+          const id = idI.value;
+          try{
+            setStatus(id ? 'Guardando cambios...' : 'Creando...');
+            setLoading(btnSave, true);
+            if (id){
+              await (window.TestimoniesAPI && window.TestimoniesAPI.update ? window.TestimoniesAPI.update(id, payload) : fetch(`/testimonies/${id}`, {method:'PUT', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)}));
+              setStatus('Cambios guardados');
+            } else {
+              const created = await (window.TestimoniesAPI && window.TestimoniesAPI.create ? window.TestimoniesAPI.create(payload) : (async ()=>{const r=await fetch('/testimonies',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});return await r.json();})());
+              setStatus('Testimonio creado');
+              if (created && created.id) idI.value = created.id;
+            }
+            await loadAndRender();
+            notifyParent();
+          }catch(err){ console.error(err); setStatus('Error al guardar: '+(err.message||err), true); }
+          finally{ setLoading(btnSave, false); }
+        });
+
+        function notifyParent(){ try{ if (window.opener) window.opener.postMessage(JSON.stringify({type:'testimonies-updated'}), '*'); }catch(e){} }
+
+        btnNew.addEventListener('click', ()=>{ clearForm(); });
+        btnRefresh.addEventListener('click', ()=> loadAndRender());
+        btnCancel.addEventListener('click', ()=> clearForm());
+
+        btnDelete.addEventListener('click', async ()=>{
+          const id = idI.value; if (!id) return setStatus('Selecciona un testimonio para eliminar', true);
+          if (!confirm('Confirmar eliminación')) return;
+          try{ setStatus('Eliminando...'); setLoading(btnDelete, true);
+            await (window.TestimoniesAPI && window.TestimoniesAPI.remove ? window.TestimoniesAPI.remove(id) : fetch(`/testimonies/${id}`, {method:'DELETE'}));
+            setStatus('Eliminado'); clearForm(); await loadAndRender(); notifyParent();
+          }catch(err){ console.error(err); setStatus('Error al eliminar: '+(err.message||err), true); }
+          finally{ setLoading(btnDelete, false); }
+        });
+
+        // wire btnSave reference (needed earlier)
+        const btnSave = document.getElementById('btn-save');
+
+        // init
+        window.addEventListener('load', ()=> loadAndRender());
+        window.addEventListener('message', (ev)=>{ try{ const m = typeof ev.data==='string'?JSON.parse(ev.data):ev.data; if (m && m.type==='testimonies-updated') loadAndRender(); }catch(e){} });
+
+      })();
+    </script>
+  </body>
+</html>

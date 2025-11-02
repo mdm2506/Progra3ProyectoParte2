@@ -3,6 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ServiciosModule } from './servicios/servicios.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { HeroModule } from './hero/hero.module';
+import { TestimoniesModule } from './testimonies/testimonies.module';
+import { Testimony } from './testimonies/entities/testimony.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -11,12 +14,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       port: 3306,
       username: 'root',
       password: '1234',
-      database: 'ServiciosDB',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      database: 'db_progra3_parte2',
+      entities: [__dirname + '/**/*.entity{.ts,.js}', Testimony],
       synchronize: false, // sincroniza la base de datos con las entidades
       autoLoadEntities: true,
     }),
     ServiciosModule,
+    HeroModule,
+    TestimoniesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
