@@ -1,4 +1,4 @@
-const ServicioUrl = 'http://localhost:3000/servicios';
+const ServicioUrl = 'http://localhost:3000/api/servicios';
 
 //este metodo obtiene los servicios
 function getServicios() {
