@@ -1,13 +1,13 @@
-(function(){
+(function () {
   const API_HOST = 'http://localhost:3000';
-  const API_BASE = API_HOST + '/testimonies';
+  const API_BASE = API_HOST + '/api/testimonies';
 
   async function parseResponse(res) {
     const text = await res.text();
-    try { return JSON.parse(text); } catch(e) { return text; }
+    try { return JSON.parse(text); } catch (e) { return text; }
   }
 
-  async function getAll(){
+  async function getAll() {
     console.log('[TestimoniesAPI] GET', API_BASE);
     const r = await fetch(API_BASE);
     const parsed = await parseResponse(r);
@@ -16,7 +16,7 @@
     return parsed;
   }
 
-  async function create(payload){
+  async function create(payload) {
     console.log('[TestimoniesAPI] POST', API_BASE, payload);
     const r = await fetch(API_BASE, {
       method: 'POST',
@@ -29,7 +29,7 @@
     return parsed;
   }
 
-  async function update(id, payload){
+  async function update(id, payload) {
     console.log('[TestimoniesAPI] PUT', `${API_BASE}/${id}`, payload);
     const r = await fetch(`${API_BASE}/${id}`, {
       method: 'PUT',
@@ -42,7 +42,7 @@
     return parsed;
   }
 
-  async function remove(id){
+  async function remove(id) {
     console.log('[TestimoniesAPI] DELETE', `${API_BASE}/${id}`);
     const r = await fetch(`${API_BASE}/${id}`, { method: 'DELETE' });
     const parsed = await parseResponse(r);
