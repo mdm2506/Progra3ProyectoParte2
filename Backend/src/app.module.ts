@@ -14,6 +14,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       database: 'ServiciosDB',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: false, // sincroniza la base de datos con las entidades
+      autoLoadEntities: true,
     }),
     ServiciosModule,
   ],
