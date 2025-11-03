@@ -48,7 +48,7 @@ window.addEventListener("load", () => {
 
       carousel.appendChild(group);
     }
-
+    //
     // Mostrar primer grupo
     initCarousel();
   }).catch(err => {
