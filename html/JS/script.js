@@ -217,56 +217,56 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // =============== JAVASCRIPT PARA EL CARRUSEL DE TESTIMONIOS ===============
-const btnIzquierda = document.querySelector(".left.arrow");
-const btnDerecha = document.querySelector(".right.arrow");
-const groups = document.querySelectorAll(".carousel-group");
+// const btnIzquierda = document.querySelector(".left.arrow");
+// const btnDerecha = document.querySelector(".right.arrow");
+// const groups = document.querySelectorAll(".carousel-group");
 
-let currentIndex = 0;
-const totalGroups = groups.length;
+// let currentIndex = 0;
+// const totalGroups = groups.length;
 
-function goToNext() {
-  currentIndex = (currentIndex + 1) % totalGroups;
-  showGroup();
-}
+// function goToNext() {
+//   currentIndex = (currentIndex + 1) % totalGroups;
+//   showGroup();
+// }
 
-function goToPrevious() {
-  currentIndex = (currentIndex - 1 + totalGroups) % totalGroups;
-  showGroup();
-}
+// function goToPrevious() {
+//   currentIndex = (currentIndex - 1 + totalGroups) % totalGroups;
+//   showGroup();
+// }
 
-function limitWordsInTestimonies() {
-  const items = document.querySelectorAll('.carousel-item');
-  items.forEach(item => {
-    const ps = item.querySelectorAll('p');
-    if (ps.length > 1) {
-      const testimonio = ps[1];
-      const original = testimonio.getAttribute('data-original') || testimonio.textContent;
-      const words = original.trim().split(/\s+/);
-      if (words.length > 20) {
-        testimonio.textContent = words.slice(0, 20).join(' ') + '...';
-      } else {
-        testimonio.textContent = original;
-      }
-      testimonio.setAttribute('data-original', original);
-    }
-  });
-}
+// function limitWordsInTestimonies() {
+//   const items = document.querySelectorAll('.carousel-item');
+//   items.forEach(item => {
+//     const ps = item.querySelectorAll('p');
+//     if (ps.length > 1) {
+//       const testimonio = ps[1];
+//       const original = testimonio.getAttribute('data-original') || testimonio.textContent;
+//       const words = original.trim().split(/\s+/);
+//       if (words.length > 20) {
+//         testimonio.textContent = words.slice(0, 20).join(' ') + '...';
+//       } else {
+//         testimonio.textContent = original;
+//       }
+//       testimonio.setAttribute('data-original', original);
+//     }
+//   });
+// }
 
-function showGroup() {
-  groups.forEach(group => {
-    group.style.display = "none";
-  });
-  groups[currentIndex].style.display = "flex";
-  limitWordsInTestimonies();
-}
+// function showGroup() {
+//   groups.forEach(group => {
+//     group.style.display = "none";
+//   });
+//   groups[currentIndex].style.display = "flex";
+//   limitWordsInTestimonies();
+// }
 
-btnIzquierda.addEventListener("click", goToPrevious);
-btnDerecha.addEventListener("click", goToNext);
+// btnIzquierda.addEventListener("click", goToPrevious);
+// btnDerecha.addEventListener("click", goToNext);
 
-document.addEventListener('DOMContentLoaded', () => {
-  showGroup();
-  limitWordsInTestimonies();
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//   showGroup();
+//   limitWordsInTestimonies();
+// });
 
 // Efecto de scroll para header, logo y nav (IIFE para aislar scope)
 (function () {
