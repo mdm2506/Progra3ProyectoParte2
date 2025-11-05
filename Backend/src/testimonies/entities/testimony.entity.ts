@@ -3,8 +3,9 @@ import {
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
+  ManyToOne,
 } from 'typeorm';
-
+import { Landing } from 'src/landing/entities/landing.entity';
 @Entity('testimonies')
 export class Testimony {
   @PrimaryGeneratedColumn()
@@ -21,6 +22,11 @@ export class Testimony {
 
   @Column({ nullable: true, length: 20 })
   rating: string;
+
+  @ManyToOne(() => Landing, (landing) => landing.id, {
+    eager: true,
+  })
+  landing: Landing;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;

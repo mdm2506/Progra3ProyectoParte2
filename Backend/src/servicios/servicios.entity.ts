@@ -1,17 +1,22 @@
-
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Landing } from 'src/landing/entities/landing.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 
 @Entity()
 export class Servicio {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column( { unique: true } )
-    titulo: string;
+  @Column({ unique: true })
+  titulo: string;
 
-    @Column()
-    descripcion: string;
+  @Column()
+  descripcion: string;
 
-   @Column()
-   urlImagen: string;
+  @Column()
+  urlImagen: string;
+
+  @ManyToOne(() => Landing, (landing) => landing.id, {
+    eager: true,
+  })
+  landing: Landing;
 }

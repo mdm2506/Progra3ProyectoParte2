@@ -8,5 +8,6 @@ import { Testimony } from './entities/testimony.entity';
   imports: [TypeOrmModule.forFeature([Testimony])],
   controllers: [TestimoniesController],
   providers: [TestimoniesService],
+  exports: [TypeOrmModule],
 })
 export class TestimoniesModule {}

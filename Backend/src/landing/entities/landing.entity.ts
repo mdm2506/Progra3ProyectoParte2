@@ -1,5 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 
+import { Servicio } from 'src/servicios/servicios.entity';
+import { Testimony } from 'src/testimonies/entities/testimony.entity';
 @Entity()
 export class Landing {
   @PrimaryGeneratedColumn()
@@ -10,4 +18,10 @@ export class Landing {
 
   @Column()
   slogan: string;
+
+  @OneToMany(() => Servicio, (servicio) => servicio.landing)
+  servicios: Servicio[];
+
+  @OneToMany(() => Testimony, (testimony) => testimony.landing)
+  testimonies: Testimony[];
 }
