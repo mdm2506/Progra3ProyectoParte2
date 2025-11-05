@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Efecto de scroll para header, logo y nav (IIFE para aislar scope)
-(function() {
+(function () {
   const logoContainer = document.querySelector('.logo');
   const logoImg = logoContainer.querySelector('img');
   const logoText = logoContainer.querySelector('a');

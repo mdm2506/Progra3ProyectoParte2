@@ -5,145 +5,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Editor de Testimonios — Nuevo</title>
-  <style>
-    :root {
-      --accent: #e06f63;
-      --muted: #f3f3f3;
-      --danger: #cc5a4a
-    }
-
-    body {
-      font-family: Inter, system-ui, Arial, Helvetica, sans-serif;
-      background: #faf8f6;
-      color: #222;
-      padding: 18px
-    }
-
-    .wrap {
-      max-width: 1100px;
-      margin: 18px auto;
-      display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 20px
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 16px;
-      box-shadow: 0 6px 22px rgba(0, 0, 0, 0.06)
-    }
-
-    h1 {
-      margin: 0 0 8px;
-      color: var(--accent)
-    }
-
-    .list {
-      max-height: 64vh;
-      overflow: auto
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse
-    }
-
-    th,
-    td {
-      padding: 10px;
-      text-align: left;
-      border-bottom: 1px solid #eee;
-      font-size: 0.95rem
-    }
-
-    tr:hover {
-      background: var(--muted)
-    }
-
-    .small {
-      font-size: 0.85rem;
-      color: #666
-    }
-
-    .actions {
-      display: flex;
-      gap: 8px
-    }
-
-    button {
-      padding: 8px 12px;
-      border-radius: 8px;
-      border: 0;
-      cursor: pointer
-    }
-
-    .primary {
-      background: var(--accent);
-      color: #fff
-    }
-
-    .ghost {
-      background: transparent;
-      border: 1px solid #ddd
-    }
-
-    .danger {
-      background: var(--danger);
-      color: #fff
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px
-    }
-
-    label {
-      font-weight: 600;
-      font-size: 0.9rem
-    }
-
-    input[type=text],
-    textarea {
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #e6e6e6
-    }
-
-    textarea {
-      min-height: 120px;
-      resize: vertical
-    }
-
-    .preview-row {
-      display: flex;
-      gap: 12px;
-      align-items: center
-    }
-
-    .avatar {
-      width: 64px;
-      height: 64px;
-      border-radius: 10px;
-      object-fit: cover;
-      border: 2px solid var(--accent)
-    }
-
-    .status {
-      font-size: 0.95rem;
-      margin-top: 6px
-    }
-
-    @media(max-width:980px) {
-      .wrap {
-        grid-template-columns: 1fr
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+  <!--TODO HE MOVIDO LA HOJA DE ESTILO A UN ARCHIVO APARTE -->
 </head>
 
 <body>
+  <!-- TODO PARTE DE EDICION DE TESTIMONIOS -->
+  <!-- VISUALIZADOR DE LOS  TESTIMONIOS (PARTE DE IZQUIERDA) -->
   <div class="wrap">
     <div class="card">
       <h1>Testimonios</h1>
@@ -172,7 +40,7 @@
         </table>
       </div>
     </div>
-
+    <!-- FORMULARIO DE EDICION DE LOS TESTIMONIOS (PARTE DERECHA) -->
     <div class="card">
       <h1 id="form-title">Crear / Editar</h1>
       <form id="form">
@@ -209,7 +77,9 @@
         <div id="status" class="status"></div>
       </form>
     </div>
-    <!-- Vista de la base de datos de los Servicios -->
+
+    <!--TODO  Vista de la base de datos de los Servicios -->
+    <!-- VISUALIZADOR DE LOS SERVICIOS -->
     <div class="card">
       <h1>Servicios</h1>
       <p class="small">
@@ -235,13 +105,9 @@
           </tbody>
         </table>
       </div>
-
-
-
-
     </div>
 
-    <!-- =======Parte de Edicion de servicios ======= -->
+    <!-- TODO FORMULARIO DE EDICION DE SERVICIOS-->
 
 
     <div class="card">
@@ -275,74 +141,73 @@
         </div>
         <div id="status-service" class="status"></div>
       </form>
-    </div> 
-    <!-- ======= Vista de la base de datos de Landing ======= -->
-<div class="card">
-  <h1>Landing</h1>
-  <p class="small">
-    Lista de registros de la sección Hero (logo y slogan). Haz click en un registro para editarlo.
-  </p>
-  <div style="margin:10px 0" class="actions">
-    <button id="btn-refresh-landing" class="ghost">Refrescar</button>
-  </div>
-  <div class="list card" id="landing-list-area" style="margin-top:10px;padding:0">
-    <table id="landing-tbl">
-      <thead>
-        <tr>
-          <th>Logo URL</th>
-          <th>Slogan</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody id="landing-tbl-body">
-        <tr>
-          <td colspan="3" class="small">Cargando...</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- ======= Parte de edición de Landing (Hero) ======= -->
-<div class="card">
-  <h1 id="form-title-landing">Editar Landing (Hero)</h1>
-  <form id="landing-form">
-    <input type="hidden" id="landing-id" />
-    <div>
-      <label for="landing-logo">URL del Logo</label>
-      <input id="landing-logo" type="text" placeholder="https://...png" required />
-    </div>
-    <div>
-      <label for="landing-slogan">Slogan</label>
-      <input id="landing-slogan" type="text" placeholder="Ej: Tu bienestar, nuestra prioridad" required />
     </div>
 
-    <div class="preview-row">
-      <img id="landing-logo-preview" class="avatar" src="../html/IMG/Logo.png" alt="preview" />
-      <div style="flex:1">
-        <div class="small">Vista previa</div>
-        <div id="preview-slogan-landing" style="font-weight:700;color:var(--accent)"></div>
+
+    <!--TODO  ======= Vista de la base de datos de Landing ======= -->
+    <div class="card">
+      <h1>Landing</h1>
+      <p class="small">
+        Lista de registros de la sección Hero (logo y slogan). Haz click en un registro para editarlo.
+      </p>
+      <div style="margin:10px 0" class="actions">
+        <button id="btn-refresh-landing" class="ghost">Refrescar</button>
+      </div>
+      <div class="list card" id="landing-list-area" style="margin-top:10px;padding:0">
+        <table id="landing-tbl">
+          <thead>
+            <tr>
+              <th>Logo URL</th>
+              <th>Slogan</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="landing-tbl-body">
+            <tr>
+              <td colspan="3" class="small">Cargando...</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
-    <div style="display:flex;gap:8px;margin-top:6px">
-      <button id="btn-save-landing" class="primary" type="submit">Guardar</button>
-      <button id="btn-cancel-landing" class="ghost" type="button">Cancelar</button>
-      <button id="btn-delete-landing" class="danger" type="button">Eliminar</button>
+    <!-- ======= Parte de edición de Landing (Hero) ======= -->
+    <div class="card">
+      <h1 id="form-title-landing">Editar Landing (Hero)</h1>
+      <form id="landing-form">
+        <input type="hidden" id="landing-id" />
+        <div>
+          <label for="landing-logo">URL del Logo</label>
+          <input id="landing-logo" type="text" placeholder="https://...png" required />
+        </div>
+        <div>
+          <label for="landing-slogan">Slogan</label>
+          <input id="landing-slogan" type="text" placeholder="Ej: Tu bienestar, nuestra prioridad" required />
+        </div>
+
+        <div class="preview-row">
+          <img id="landing-logo-preview" class="avatar" src="../html/IMG/Logo.png" alt="preview" />
+          <div style="flex:1">
+            <div class="small">Vista previa</div>
+            <div id="preview-slogan-landing" style="font-weight:700;color:var(--accent)"></div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:8px;margin-top:6px">
+          <button id="btn-save-landing" class="primary" type="submit">Guardar</button>
+          <button id="btn-cancel-landing" class="ghost" type="button">Cancelar</button>
+          <button id="btn-delete-landing" class="danger" type="button">Eliminar</button>
+        </div>
+        <div id="status-landing" class="status"></div>
+      </form>
     </div>
-    <div id="status-landing" class="status"></div>
-  </form>
-</div>
 
   </div>
 
+  <!--TODO Incluir librerias -->
+  <script src="servicios-api.js"></script>
+  <script src="testimonies-api.js"></script>
 
-
-  <!-- Incluir librerias -->
-  <script src="../html/JS/servicios-api.js"></script>
-  <script src="../html/JS/EventServicio.js"></script>
-  <script src="../html/JS/testimonies-api.js"></script>
-  <script src="../html/JS/fechServico.js"></script>
 
   <!-- script para el editable de servicios -->
   <script>
@@ -591,173 +456,7 @@
     })();
   </script>
 
-<script>
-  (function () {
-    // ====== CONFIG API ======
-    const API_BASE = 'http://localhost:3000/api/landing'; // usa absoluto si tu front corre en otro puerto
-
-    // ====== ELEMENTOS DE LISTA ======
-    const tblBody = document.getElementById('landing-tbl-body');
-    const btnRefresh = document.getElementById('btn-refresh-landing');
-
-    // ====== ELEMENTOS DEL FORM ======
-    const form = document.getElementById('landing-form');
-    const idI = document.getElementById('landing-id');
-    const logoI = document.getElementById('landing-logo');
-    const sloganI = document.getElementById('landing-slogan');
-    const logoPreview = document.getElementById('landing-logo-preview');
-    const previewSlogan = document.getElementById('preview-slogan-landing');
-    const btnSave = document.getElementById('btn-save-landing');
-    const btnCancel = document.getElementById('btn-cancel-landing');
-    const btnDelete = document.getElementById('btn-delete-landing');
-    const status = document.getElementById('status-landing');
-
-    let data = [];
-
-    function setStatus(msg, isError) {
-      status.textContent = msg || '';
-      status.style.color = isError ? '#b00020' : '#333';
-    }
-
-    function setLoading(el, on) { if (el) el.disabled = on; }
-
-    function escapeHtml(str) {
-      if (!str) return '';
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-    }
-
-    // ====== CARGAR Y RENDERIZAR LISTA ======
-    async function loadAndRenderLanding() {
-      setStatus('Cargando landing...');
-      try {
-        const r = await fetch(API_BASE);
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        const list = await r.json();
-        data = Array.isArray(list) ? list : [];
-        if (!data.length) {
-          tblBody.innerHTML = '<tr><td colspan="3" class="small">No hay registros de landing</td></tr>';
-          setStatus('');
-          return;
-        }
-        tblBody.innerHTML = '';
-        data.forEach(item => {
-          const tr = document.createElement('tr');
-          tr.innerHTML = `
-            <td class="small">${escapeHtml(item.logoUrl || '').slice(0, 80)}</td>
-            <td>${escapeHtml(item.slogan || '')}</td>
-            <td style="text-align:right">
-              <button data-id="${item.id}" class="ghost btn-edit-landing">Editar</button>
-            </td>
-          `;
-          tblBody.appendChild(tr);
-        });
-        tblBody.querySelectorAll('.btn-edit-landing').forEach(b =>
-          b.addEventListener('click', () => selectForEdit(b.dataset.id))
-        );
-        setStatus('');
-      } catch (err) {
-        console.error('[LandingAPI] Error', err);
-        setStatus('Error cargando landing: ' + (err.message || err), true);
-      }
-    }
-
-    function clearForm() {
-      idI.value = '';
-      logoI.value = '';
-      sloganI.value = '';
-      logoPreview.src = '../html/IMG/Logo.png';
-      previewSlogan.textContent = '';
-      document.getElementById('form-title-landing').textContent = 'Editar Landing (Hero)';
-    }
-
-    async function selectForEdit(id) {
-      const item = data.find(x => String(x.id) === String(id));
-      if (!item) return setStatus('Registro no encontrado', true);
-      idI.value = item.id;
-      logoI.value = item.logoUrl || '';
-      sloganI.value = item.slogan || '';
-      logoPreview.src = item.logoUrl || '../html/IMG/Logo.png';
-      previewSlogan.textContent = item.slogan || '';
-      document.getElementById('form-title-landing').textContent = 'Editar — Landing #' + item.id;
-    }
-
-    // ====== PREVIEW EN TIEMPO REAL ======
-    logoI.addEventListener('input', () => {
-      logoPreview.src = logoI.value || '../html/IMG/Logo.png';
-    });
-    sloganI.addEventListener('input', () => {
-      previewSlogan.textContent = sloganI.value;
-    });
-
-    // ====== SUBMIT (CREATE / UPDATE) ======
-    form.addEventListener('submit', async e => {
-      e.preventDefault();
-      const payload = {
-        logoUrl: (logoI.value || '').trim(),
-        slogan: (sloganI.value || '').trim()
-      };
-      if (!payload.logoUrl || !payload.slogan) return setStatus('Logo URL y Slogan son requeridos', true);
-
-      const id = idI.value;
-      try {
-        setStatus('Guardando...');
-        setLoading(btnSave, true);
-        const url = id ? `${API_BASE}/${id}` : API_BASE;
-        const method = id ? 'PUT' : 'POST';
-        const res = await fetch(url, {
-          method,
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        setStatus('Cambios guardados');
-        await loadAndRenderLanding();
-        clearForm();
-      } catch (err) {
-        console.error(err);
-        setStatus('Error al guardar: ' + (err.message || err), true);
-      } finally {
-        setLoading(btnSave, false);
-      }
-    });
-
-    // ====== DELETE ======
-    btnDelete.addEventListener('click', async () => {
-      const id = idI.value;
-      if (!id) return setStatus('Selecciona un registro para eliminar', true);
-      if (!confirm('Confirmar eliminación')) return;
-      try {
-        setStatus('Eliminando...');
-        setLoading(btnDelete, true);
-        const r = await fetch(`${API_BASE}/${id}`, { method: 'DELETE' });
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        setStatus('Eliminado');
-        clearForm();
-        await loadAndRenderLanding();
-      } catch (err) {
-        console.error(err);
-        setStatus('Error al eliminar: ' + (err.message || err), true);
-      } finally {
-        setLoading(btnDelete, false);
-      }
-    });
-
-    // ====== CANCEL ======
-    btnCancel.addEventListener('click', () => clearForm());
-
-    // ====== REFRESH ======
-    btnRefresh.addEventListener('click', () => loadAndRenderLanding());
-
-    // ====== INIT ======
-    window.addEventListener('load', () => loadAndRenderLanding());
-  })();
-</script>
-
+  <script src="landing-api.js"></script>
 
 
 
