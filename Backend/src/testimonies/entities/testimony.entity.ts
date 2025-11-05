@@ -11,16 +11,16 @@ export class Testimony {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 200 })
+  @Column()
   name: string;
 
-  @Column({ type: 'text' })
+  @Column()
   text: string;
 
   @Column({ nullable: true })
   img: string;
 
-  @Column({ nullable: true, length: 20 })
+  @Column({ nullable: true })
   rating: string;
 
   @ManyToOne(() => Landing, (landing) => landing.id, {
@@ -28,6 +28,6 @@ export class Testimony {
   })
   landing: Landing;
 
-  @CreateDateColumn({ type: 'timestamp' })
+  @CreateDateColumn()
   createdAt: Date;
 }
