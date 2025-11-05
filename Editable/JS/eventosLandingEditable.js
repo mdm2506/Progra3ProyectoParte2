@@ -1,8 +1,4 @@
-
 (function () {
-    // ====== CONFIG API ======
-    const API_BASE = 'http://localhost:3000/api/landing'; // usa absoluto si tu front corre en otro puerto
-
     // ====== ELEMENTOS DE LISTA ======
     const tblBody = document.getElementById('landing-tbl-body');
     const btnRefresh = document.getElementById('btn-refresh-landing');
@@ -21,12 +17,14 @@
 
     let data = [];
 
-    function setStatus(msg, isError) {
+    function setStatus(msg, isError = false) {
         status.textContent = msg || '';
         status.style.color = isError ? '#b00020' : '#333';
     }
 
-    function setLoading(el, on) { if (el) el.disabled = on; }
+    function setLoading(el, on) {
+        if (el) el.disabled = on;
+    }
 
     function escapeHtml(str) {
         if (!str) return '';
@@ -42,30 +40,33 @@
     async function loadAndRenderLanding() {
         setStatus('Cargando landing...');
         try {
-            const r = await fetch(API_BASE);
-            if (!r.ok) throw new Error('HTTP ' + r.status);
-            const list = await r.json();
+            const list = await getLandings();
             data = Array.isArray(list) ? list : [];
+
             if (!data.length) {
-                tblBody.innerHTML = '<tr><td colspan="3" class="small">No hay registros de landing</td></tr>';
+                tblBody.innerHTML =
+                    '<tr><td colspan="3" class="small">No hay registros de landing</td></tr>';
                 setStatus('');
                 return;
             }
+
             tblBody.innerHTML = '';
-            data.forEach(item => {
+            data.forEach((item) => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-            <td class="small">${escapeHtml(item.logoUrl || '').slice(0, 80)}</td>
-            <td>${escapeHtml(item.slogan || '')}</td>
-            <td style="text-align:right">
-              <button data-id="${item.id}" class="ghost btn-edit-landing">Editar</button>
-            </td>
-          `;
+          <td class="small">${escapeHtml(item.logoUrl || '').slice(0, 80)}</td>
+          <td>${escapeHtml(item.slogan || '')}</td>
+          <td style="text-align:right">
+            <button data-id="${item.id}" class="ghost btn-edit-landing">Editar</button>
+          </td>
+        `;
                 tblBody.appendChild(tr);
             });
-            tblBody.querySelectorAll('.btn-edit-landing').forEach(b =>
+
+            tblBody.querySelectorAll('.btn-edit-landing').forEach((b) =>
                 b.addEventListener('click', () => selectForEdit(b.dataset.id))
             );
+
             setStatus('');
         } catch (err) {
             console.error('[LandingAPI] Error', err);
@@ -83,46 +84,47 @@
     }
 
     async function selectForEdit(id) {
-        const item = data.find(x => String(x.id) === String(id));
+        const item = data.find((x) => String(x.id) === String(id));
         if (!item) return setStatus('Registro no encontrado', true);
+
         idI.value = item.id;
         logoI.value = item.logoUrl || '';
         sloganI.value = item.slogan || '';
         logoPreview.src = item.logoUrl || '../html/IMG/Logo.png';
         previewSlogan.textContent = item.slogan || '';
-        document.getElementById('form-title-landing').textContent = 'Editar — Landing #' + item.id;
+        document.getElementById('form-title-landing').textContent =
+            'Editar — Landing #' + item.id;
     }
 
     // ====== PREVIEW EN TIEMPO REAL ======
     logoI.addEventListener('input', () => {
         logoPreview.src = logoI.value || '../html/IMG/Logo.png';
     });
+
     sloganI.addEventListener('input', () => {
         previewSlogan.textContent = sloganI.value;
     });
 
-    // ====== SUBMIT (CREATE / UPDATE) ======
-    form.addEventListener('submit', async e => {
+    // ====== SUBMIT (UPDATE) ======
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const payload = {
             logoUrl: (logoI.value || '').trim(),
-            slogan: (sloganI.value || '').trim()
+            slogan: (sloganI.value || '').trim(),
         };
-        if (!payload.logoUrl || !payload.slogan) return setStatus('Logo URL y Slogan son requeridos', true);
+        if (!payload.logoUrl || !payload.slogan)
+            return setStatus('Logo URL y Slogan son requeridos', true);
 
         const id = idI.value;
+        if (!id) return setStatus('Debes seleccionar un registro para actualizar', true);
+
         try {
             setStatus('Guardando...');
             setLoading(btnSave, true);
-            const url = id ? `${API_BASE}/${id}` : API_BASE;
-            const method = id ? 'PUT' : 'POST';
-            const res = await fetch(url, {
-                method,
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-            if (!res.ok) throw new Error('HTTP ' + res.status);
-            setStatus('Cambios guardados');
+
+            await updateLanding(id, payload);
+
+            setStatus('Cambios guardados correctamente');
             await loadAndRenderLanding();
             clearForm();
         } catch (err) {
@@ -138,12 +140,14 @@
         const id = idI.value;
         if (!id) return setStatus('Selecciona un registro para eliminar', true);
         if (!confirm('Confirmar eliminación')) return;
+
         try {
             setStatus('Eliminando...');
             setLoading(btnDelete, true);
-            const r = await fetch(`${API_BASE}/${id}`, { method: 'DELETE' });
-            if (!r.ok) throw new Error('HTTP ' + r.status);
-            setStatus('Eliminado');
+
+            await deleteLanding(id);
+
+            setStatus('Eliminado correctamente');
             clearForm();
             await loadAndRenderLanding();
         } catch (err) {
@@ -163,4 +167,3 @@
     // ====== INIT ======
     window.addEventListener('load', () => loadAndRenderLanding());
 })();
-
