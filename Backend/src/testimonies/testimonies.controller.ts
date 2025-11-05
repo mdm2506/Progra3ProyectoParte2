@@ -17,32 +17,32 @@ export class TestimoniesController {
   constructor(private readonly testimoniesService: TestimoniesService) {}
 
   @Post()
-  async create(
+  createTestimony(
     @Body() createTestimonyDto: CreateTestimonyDto,
   ): Promise<Testimony> {
-    return await this.testimoniesService.create(createTestimonyDto);
+    return this.testimoniesService.create(createTestimonyDto);
   }
 
   @Get()
-  async findAll(): Promise<Testimony[]> {
-    return await this.testimoniesService.findAll();
+  findAllTestimonies(): Promise<Testimony[]> {
+    return this.testimoniesService.findAllTestimonies();
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<Testimony> {
-    return await this.testimoniesService.findOne(+id);
+  findTestimonyById(@Param('id') id: number): Promise<Testimony> {
+    return this.testimoniesService.findTestimonyById(id);
   }
 
   @Put(':id')
   async update(
-    @Param('id') id: string,
+    @Param('id') id: number,
     @Body() updateTestimonyDto: UpdateTestimonyDto,
   ): Promise<any> {
-    return await this.testimoniesService.update(+id, updateTestimonyDto);
+    return await this.testimoniesService.updateTestimony(id, updateTestimonyDto);
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string): Promise<any> {
-    return await this.testimoniesService.remove(+id);
+  async deleteTestimony(@Param('id') id: number): Promise<any> {
+    return await this.testimoniesService.deleteTestimony(id);
   }
 }

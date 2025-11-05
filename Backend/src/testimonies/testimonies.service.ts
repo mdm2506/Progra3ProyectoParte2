@@ -19,24 +19,24 @@ export class TestimoniesService {
     return this.testimonyRepo.save(ent);
   }
 
-  async findAll() {
-    return this.testimonyRepo.find({ order: { createdAt: 'DESC' } });
+  async findAllTestimonies() {
+    return this.testimonyRepo.find();
   }
 
-  async findOne(id: number) {
+  async findTestimonyById(id: number) {
     const t = await this.testimonyRepo.findOneBy({ id });
     if (!t) throw new NotFoundException(`Testimony ${id} not found`);
     return t;
   }
 
-  async update(id: number, updateTestimonyDto: UpdateTestimonyDto) {
-    const t = await this.findOne(id);
+  async updateTestimony(id: number, updateTestimonyDto: UpdateTestimonyDto) {
+    const t = await this.findTestimonyById(id);
     Object.assign(t, updateTestimonyDto);
     return this.testimonyRepo.save(t);
   }
 
-  async remove(id: number) {
-    const t = await this.findOne(id);
+  async deleteTestimony(id: number) {
+    const t = await this.findTestimonyById(id);
     await this.testimonyRepo.remove(t);
     return { deleted: true };
   }

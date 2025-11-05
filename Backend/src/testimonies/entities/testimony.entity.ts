@@ -27,7 +27,4 @@ export class Testimony {
     eager: true,
   })
   landing: Landing;
-
-  @CreateDateColumn()
-  createdAt: Date;
 }
