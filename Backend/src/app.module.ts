@@ -6,6 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { HeroModule } from './hero/hero.module';
 import { TestimoniesModule } from './testimonies/testimonies.module';
 import { Testimony } from './testimonies/entities/testimony.entity';
+import { LandingModule } from './landing/landing.module';
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -13,15 +15,16 @@ import { Testimony } from './testimonies/entities/testimony.entity';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '1234',
+      password: 'F1t3M12107',
       database: 'db_progra3_parte2',
       entities: [__dirname + '/**/*.entity{.ts,.js}', Testimony],
-      synchronize: false, // sincroniza la base de datos con las entidades
-      autoLoadEntities: true,
+      synchronize: true, // Mantener en false para no sobrescribir la BD
+      autoLoadEntities: true, // Carga automáticamente las entidades registradas en los módulos
     }),
     ServiciosModule,
     HeroModule,
     TestimoniesModule,
+    LandingModule,
   ],
   controllers: [AppController],
   providers: [AppService],
