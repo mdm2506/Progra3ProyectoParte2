@@ -10,17 +10,6 @@ export class ServiciosService {
     private servicioRepository: Repository<Servicio>,
   ) {}
 
-  async createServicio(servicio: Servicio): Promise<Servicio> {
-    const foundServicio = await this.servicioRepository.findOneBy({ titulo: servicio.titulo });
-    if (foundServicio) {
-      throw new HttpException('Servicio already exists', HttpStatus.CONFLICT);
-    }
-
-    const newServicio = this.servicioRepository.create(servicio);
-    const servicioCreated = await this.servicioRepository.save(newServicio);
-    return servicioCreated;
-  }
-
   async getAllServicios(): Promise<Servicio[]> {
     const servicios = await this.servicioRepository.find();
     if (!servicios || servicios.length === 0) {
@@ -39,11 +28,6 @@ export class ServiciosService {
     }
 
     return servicio;
-  }
-
-  deleteServicio(id: number): string {
-    void this.servicioRepository.delete(id);
-    return `DELETE SERVICIO ${id}`;
   }
 
   async updateServicio(id: number, servicio: Servicio): Promise<UpdateResult> {
