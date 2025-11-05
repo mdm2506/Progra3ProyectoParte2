@@ -1,4 +1,4 @@
-const LandingUrl = 'http://localhost:3000/api/landing'; 
+const LandingUrl = 'http://localhost:3000/api/landing';
 // Usa 'http://localhost:3000/landing' si NO tienes app.setGlobalPrefix('api')
 
 // GET
@@ -16,6 +16,6 @@ function createLanding(landing) {
     if (!response.ok) {
       return response.json().then(err => Promise.reject(err));
     }
-    return response.json();
+    return response.json(); a
   });
 }

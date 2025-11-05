@@ -15,7 +15,7 @@ import { LandingModule } from './landing/landing.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'F1t3M12107',
+      password: '1234',
       database: 'db_progra3_parte2',
       entities: [__dirname + '/**/*.entity{.ts,.js}', Testimony],
       synchronize: true, // Mantener en false para no sobrescribir la BD

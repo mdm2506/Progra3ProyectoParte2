@@ -1,39 +1,39 @@
+const LandingUrl = 'http://localhost:3000/api/landing';
+
+function getLandings() {
+  return fetch(LandingUrl).then(res => res.json());
+}
+
 window.addEventListener("load", () => {
+  getLandings()
+    .then((landings) => {
+      const heroLogo = document.getElementById("hero-logo");
+      const heroSlogan = document.getElementById("hero-slogan");
 
-  getLandings().then((landings) => {
-    // Elementos del Hero que se van a actualizar
-    const heroLogo = document.getElementById("hero-logo");
-    const heroSlogan = document.getElementById("hero-slogan");
+      if (!landings || landings.length === 0) {
+        console.warn("[EventoLanding] No hay datos de landing disponibles.");
+        return;
+      }
 
-    // Si no hay registros, no hace nada
-    if (!landings || landings.length === 0) {
-      console.warn("[EventoLanding] No hay datos de landing disponibles.");
-      return;
-    }
+      const landing = landings[0];
 
-    // Tomamos el primer registro del backend
-    const landing = landings[0];
+      // ===== LOGO DEL HEADER =====
+      if (landing.logoUrl) {
+        heroLogo.src = landing.logoUrl;
+        heroLogo.alt = `Logo Landing #${landing.id}`;
+        heroLogo.style.display = "inline-block";
+      } else {
+        heroLogo.style.display = "none";
+      }
 
-    // Cambiamos el logo (si existe)
-    if (landing.logoUrl) {
-      heroLogo.src = landing.logoUrl;
-      heroLogo.alt = `Logo Landing #${landing.id}`;
-      heroLogo.style.display = "block";
-    } else {
-      heroLogo.style.display = "none";
-    }
+      // ===== SLOGAN DEL HERO =====
+      if (heroSlogan) {
+        heroSlogan.textContent = landing.slogan || "Vestimos tus sueños";
+      }
 
-    // Cambiamos el slogan (si existe)
-    if (landing.slogan) {
-      heroSlogan.textContent = landing.slogan;
-    } else {
-      heroSlogan.textContent = "Vestimos tus sueños";
-    }
-
-    console.log("[EventoLanding] Landing actualizado:", landing);
-  })
-  .catch((err) => {
-    console.error("[EventoLanding] Error cargando landing:", err);
-  });
-
+      console.log("[EventoLanding] Landing actualizado:", landing);
+    })
+    .catch((err) => {
+      console.error("[EventoLanding] Error cargando landing:", err);
+    });
 });
