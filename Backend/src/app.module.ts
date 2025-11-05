@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ServiciosModule } from './servicios/servicios.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { HeroModule } from './hero/hero.module';
+
 import { TestimoniesModule } from './testimonies/testimonies.module';
 import { Testimony } from './testimonies/entities/testimony.entity';
 import { LandingModule } from './landing/landing.module';
@@ -22,7 +22,6 @@ import { LandingModule } from './landing/landing.module';
       autoLoadEntities: true, // Carga automáticamente las entidades registradas en los módulos
     }),
     ServiciosModule,
-    HeroModule,
     TestimoniesModule,
     LandingModule,
   ],
