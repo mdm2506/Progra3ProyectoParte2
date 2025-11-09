@@ -15,12 +15,12 @@ function updateServicio(id, servicioActualizado) {
             'Content-Type': 'application/json; charset=UTF-8',
         },
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Error al actualizar el servicio");
+        .then(response => { // manejo de errores
+            if (!response.ok) { // si la respuesta no es ok
+                throw new Error("Error al actualizar el servicio"); // lanza un error
             }
-            return response.json();
+            return response.json(); // si es ok, retorna el json
         })
-        .then(json => console.log("Servicio actualizado:", json))
-        .catch(error => console.error(error));
+        .then(json => console.log("Servicio actualizado:", json)) // muestra en consola el servicio actualizado
+        .catch(error => console.error(error)); // si hubo un error, lo muestra en consola
 }
