@@ -26,8 +26,6 @@ export class Testimony {
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
 
-  @ManyToOne(() => Landing, (landing) => landing.id, {
-    eager: true,
-  })
+  @ManyToOne(() => Landing, (landing) => landing.testimonies)
   landing: Landing;
 }

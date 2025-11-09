@@ -1,12 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { Repository, UpdateResult } from 'typeorm';
+import { Testimony } from '../testimonies/entities/testimony.entity';
+import { Servicio } from '../servicios/servicios.entity';
 import { Landing } from './entities/landing.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class LandingService {
   constructor(
+    @InjectRepository(Testimony)
+    private readonly testimonyRepo: Repository<Testimony>,
+
+    @InjectRepository(Servicio)
+    private servicioRepository: Repository<Servicio>,
+
     @InjectRepository(Landing)
     private landingRepository: Repository<Landing>,
   ) {}
@@ -30,24 +38,25 @@ export class LandingService {
 
   // Obtener todos los landings
   async getAllLandings(): Promise<Landing[]> {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-    const landings = await this.landingRepository.find();
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    if (!landings || landings.length === 0) {
+    const landings = await this.landingRepository.find({
+      relations: ['servicios', 'testimonies'],
+    });
+    if (!landings.length)
       throw new HttpException('No landings found', HttpStatus.NOT_FOUND);
-    }
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return landings;
   }
 
   // Obtener un landing por ID
-  async getLandingById(id: number): Promise<Landing | null> {
+  async getLandingById(id: number): Promise<Landing> {
     const landing = await this.landingRepository.findOne({
       where: { id },
+      relations: ['servicios', 'testimonies'], // 🔥 Incluye las relaciones
     });
+
     if (!landing) {
       throw new HttpException('Landing not found', HttpStatus.NOT_FOUND);
     }
+
     return landing;
   }
 
