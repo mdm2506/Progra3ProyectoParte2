@@ -50,10 +50,11 @@
         <div class="tile"><img src="IMG/Hero9.png"></div>
       </div>
 
-      <!-- Texto y botón principal -->
+    <!-- Texto y botón principal -->
       <div class="herooo">
         <!-- <h1 class="hero-slogan">Vestimos tus sueños</h1> esto es lo que necesito que el landing me imprima al momento de cargar la pagina -->
-        <h1 id="hero-slogan" class="hero-slogan"></h1>
+    <h1 id="hero-slogan" class="hero-slogan"></h1>
+  <!-- El texto y el CTA se rellenan desde JS (getLandings) al cargar la página -->
   <a id="hero-cta" href="#Seasons" class="cta-button" aria-label="Explorar colección de temporada">Explora Nuestra Colección</a>
       </div>
     </section>
@@ -155,15 +156,10 @@
     <section id="Services" class="content alt full">
       <h2 class="Section-title">Servicios que ofrecemos</h2>
       <div id="Services-flex-cards">
-
-        <!-- Servicio estructura ejemplo -->
-        <!-- <div class="card">
-          <img src="IMG/servicio2.1.jpg" alt="" class="service-img">
-          <div class="intro">
-            <h2>Elije propio diseño</h2>
-            <p>Puedes hacernos un pedido personalizado según tus preferencias</p>
-          </div>
-        </div> -->
+        <!-- Contenedor donde JS inyecta las tarjetas de servicios desde la API de landing -->
+        <!-- Ejemplo de estructura (desactivado):
+          <div class="card">...</div>
+        -->
       </div>
     </section>
 
@@ -176,8 +172,9 @@
         <!-- Botón izquierda -->
         <button class="left arrow">&#10094;</button>
 
-        <!-- Carrusel de testimonios (cargado dinámicamente desde la API) -->
-        <div class="carousel"></div>
+  <!-- Carrusel de testimonios (cargado dinámicamente desde la API) -->
+  <!-- JS crea grupos (.carousel-group) dentro de este contenedor -->
+  <div class="carousel"></div>
 
         <!-- Botón derecha -->
         <button class="right arrow">&#10095;</button>
@@ -259,7 +256,6 @@
   <script src="JS/script.js"></script>
   <script src="JS/fetchLanding.js"></script>
   <script src="JS/EventosLanding.js"></script>
-  <script></script>
 </body>
 
 </html>

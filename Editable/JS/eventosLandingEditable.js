@@ -1,5 +1,6 @@
-// Archivo para editar los datos de la sección Landing (Hero)
-// Usamos una IIFE para mantener variables en un scope privado
+
+    // Admin editor para la sección Landing (Hero).
+    // Permite listar, editar y actualizar el logo, slogan y CTA.
 (function () {
     // ====== ELEMENTOS DE LISTA ======
     const tblBody = document.getElementById('landing-tbl-body');
@@ -16,7 +17,6 @@
     const previewCta = document.getElementById('landing-cta-preview');
     const btnSave = document.getElementById('btn-save-landing');
     const btnCancel = document.getElementById('btn-cancel-landing');
-    const btnDelete = document.getElementById('btn-delete-landing');
     const status = document.getElementById('status-landing');
 
     // Memoria local
@@ -175,30 +175,8 @@
         });
     }
 
-    // ====== DELETE ======
-    if (btnDelete) {
-        btnDelete.addEventListener('click', async () => {
-            const id = idI && idI.value;
-            if (!id) return setStatus('Selecciona un registro para eliminar', true);
-            if (!confirm('Confirmar eliminación')) return;
-
-            try {
-                setStatus('Eliminando...');
-                setLoading(btnDelete, true);
-
-                await deleteLanding(id);
-
-                setStatus('Eliminado correctamente');
-                clearForm();
-                await loadAndRenderLanding();
-            } catch (err) {
-                console.error(err);
-                setStatus('Error al eliminar: ' + (err.message || err), true);
-            } finally {
-                setLoading(btnDelete, false);
-            }
-        });
-    }
+    // Note: Landing deletion is intentionally disabled in the admin UI.
+    // The delete button and handler were removed per project requirements.
 
     // ====== CANCEL / REFRESH / INIT ======
     if (btnCancel) btnCancel.addEventListener('click', () => clearForm());

@@ -18,11 +18,11 @@
       <p class="small">Lista de testimonios en la base de datos. Haz click en un registro para editarlo o usa el botón
         <strong>Nuevo</strong>.
       </p>
-      <div style="margin:10px 0" class="actions">
+      <div class="actions">
         <button id="btn-new" class="ghost">Nuevo</button>
         <button id="btn-refresh" class="ghost">Refrescar</button>
       </div>
-      <div class="list card" id="list-area" style="margin-top:10px;padding:0">
+  <div class="list card" id="list-area">
         <table id="tbl">
           <thead>
             <tr>
@@ -63,13 +63,13 @@
         </div>
         <div class="preview-row">
           <img id="img-preview" class="avatar" src="../html/IMG/Logo.png" alt="preview" />
-          <div style="flex:1">
+          <div class="flex-1">
             <div class="small">Vista previa</div>
             <div id="preview-name" style="font-weight:700;color:var(--accent)"></div>
             <div id="preview-rating" class="small" style="color:#f5a623"></div>
           </div>
         </div>
-        <div style="display:flex;gap:8px;margin-top:6px">
+        <div class="btn-row">
           <button id="btn-save" class="primary" type="submit">Guardar</button>
           <button id="btn-cancel" class="ghost" type="button">Cancelar</button>
           <button id="btn-delete" class="danger" type="button">Eliminar</button>
@@ -85,7 +85,7 @@
       <p class="small">
         Lista de servicios en la base de datos. Haz click en un registro para editarlo.
       </p>
-      <div style="margin:10px 0" class="actions">
+      <div class="actions">
         <button id="btn-refresh-service" class="ghost">Refrescar</button>
       </div>
       <div class="list card" id="services-list-area" style="margin-top:10px;padding:0">
@@ -129,14 +129,15 @@
 
         <div class="preview-row">
           <img id="img-preview-service" class="avatar" src="../html/IMG/Logo.png" alt="preview" />
-          <div style="flex:1">
+          <div class="flex-1">
             <div class="small">Vista previa</div>
             <div id="preview-title-service" style="font-weight:700;color:var(--accent)"></div>
             <div id="preview-desc-service" class="small" style="color:#f5a623"></div>
           </div>
         </div>
-        <div style="display:flex;gap:8px;margin-top:6px">
+        <div class="btn-row">
           <button id="btn-save-service" class="primary" type="submit">Guardar</button>
+          <button id="btn-cancel-service" class="ghost" type="button">Cancelar</button>
 
         </div>
         <div id="status-service" class="status"></div>
@@ -150,7 +151,7 @@
       <p class="small">
         Lista de registros de la sección Hero (logo y slogan). Haz click en un registro para editarlo.
       </p>
-      <div style="margin:10px 0" class="actions">
+      <div class="actions">
         <button id="btn-refresh-landing" class="ghost">Refrescar</button>
       </div>
       <div class="list card" id="landing-list-area" style="margin-top:10px;padding:0">
@@ -192,11 +193,11 @@
 
         <div class="preview-row">
           <img id="landing-logo-preview" class="avatar" src="../html/IMG/Logo.png" alt="preview" />
-          <div style="flex:1">
+          <div class="flex-1">
             <div class="small">Vista previa</div>
             <div id="preview-slogan-landing" style="font-weight:700;color:var(--accent)"></div>
-            <div style="margin-top:8px">
-              <a id="landing-cta-preview" class="cta-button" href="#Seasons" style="display:none;padding:6px 10px;text-decoration:none;border-radius:4px;background:#e06f63;color:#fff">CTA</a>
+            <div class="mt-8">
+              <a id="landing-cta-preview" class="cta-preview" href="#Seasons">CTA</a>
             </div>
           </div>
         </div>
@@ -204,7 +205,6 @@
         <div style="display:flex;gap:8px;margin-top:6px">
           <button id="btn-save-landing" class="primary" type="submit">Guardar</button>
           <button id="btn-cancel-landing" class="ghost" type="button">Cancelar</button>
-          <button id="btn-delete-landing" class="danger" type="button">Eliminar</button>
         </div>
         <div id="status-landing" class="status"></div>
       </form>
@@ -212,14 +212,14 @@
 
   </div>
 
-  <!--TODO Incluir scripts -->
-  <!--* Servicios -->
+  <!-- Incluir scripts: el order importa (fetch debe cargarse antes del evento) -->
+  <!-- Servicios -->
   <script src="/Editable/JS/fetchServico.js"></script>
   <script src="/Editable/JS/eventoServicioEditable.js"></script>
-  <!--* testimonios -->
+  <!-- Testimonios -->
   <script src="/Editable/JS/fetchTestimonio.js"></script>
   <script src="/Editable/JS/eventoTestimonioEditable.js"></script>
-  <!--* Landing -->
+  <!-- Landing -->
   <script src="../html/JS/fetchLanding.js"></script>
   <script src="/Editable/JS/eventosLandingEditable.js"></script>
 

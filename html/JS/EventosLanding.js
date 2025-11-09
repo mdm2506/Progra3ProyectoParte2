@@ -1,3 +1,5 @@
+// EventosLanding: renderiza hero, servicios y testimonios en la página principal.
+// Mantiene la estructura de testimonio compatible con el HTML existente.
 // Crear un item individual de testimonio (misma "figura" que antes)
 function crearItemTestimonio(testimonio) {
   const item = document.createElement('div');
@@ -14,6 +16,7 @@ function crearItemTestimonio(testimonio) {
   const stars = document.createElement('div');
   stars.classList.add('testimonial-stars');
   const rating = Math.min(Math.max(Number(testimonio.rating) || 0, 0), 5);
+  // Representación simple de la calificación con estrellas
   stars.innerHTML = '⭐'.repeat(rating) + '☆'.repeat(5 - rating);
   item.appendChild(stars);
 
@@ -71,15 +74,10 @@ function iniciarCarrusel() {
 }
 
 // getLandings is provided by JS/fetchLanding.js which centralizes API calls.
-// If that file is not included, uncomment the local implementation below.
-/*
-function getLandings() { // GET
-  return fetch(LandingUrl).then(res => res.json()); // hace fetch a la ruta y retorna la respuesta en JSON
-}
-*/
 
 window.addEventListener("load", () => { // espera a que la página cargue completamente
-  getLandings() // llama a la función que trae los datos de landing
+  // Pedimos al servidor los datos de landing (hero + servicios + testimonios)
+  getLandings()
     .then((landings) => { // maneja la respuesta
       const heroLogo = document.getElementById("hero-logo"); // selecciona el elemento del logo del hero
       const heroSlogan = document.getElementById("hero-slogan"); // selecciona el elemento del slogan del hero
@@ -93,38 +91,40 @@ window.addEventListener("load", () => { // espera a que la página cargue comple
       const landing = landings[0]; // toma el primer landing (asumiendo que solo hay uno)
 
       // ===== LOGO DEL HEADER =====
-      if (landing.logoUrl) { // si hay una URL de logo
-        heroLogo.src = landing.logoUrl; // asigna la URL al src del logo
-        heroLogo.alt = `Logo Landing #${landing.id}`; // asigna el texto alternativo
-        heroLogo.style.display = "inline-block"; // muestra el logo
+      // Logo: si el landing tiene logo, lo mostramos; si no, lo ocultamos
+      if (landing.logoUrl) {
+        heroLogo.src = landing.logoUrl;
+        heroLogo.alt = `Logo Landing #${landing.id}`;
+        heroLogo.style.display = "inline-block";
       } else {
-        heroLogo.style.display = "none"; // oculta el logo si no hay URL
+        heroLogo.style.display = "none";
       }
 
       // ===== SLOGAN DEL HERO =====
-      if (heroSlogan) { // verifica que el elemento exista
-        heroSlogan.textContent = landing.slogan || "Vestimos tus sueños"; // asigna el slogan o un valor por defecto
+      // Slogan: mostrar el slogan del landing o un valor por defecto
+      if (heroSlogan) {
+        heroSlogan.textContent = landing.slogan || "Vestimos tus sueños";
       }
 
       // ===== CTA DEL HERO =====
+      // CTA: rellenar texto del botón principal si viene en el landing
       if (heroCta) {
         if (landing.cta) {
           heroCta.textContent = landing.cta;
           heroCta.style.display = 'inline-block';
         } else {
-          // si no hay CTA definida, ocultamos o dejamos el texto por defecto
           heroCta.textContent = heroCta.textContent || 'Explora Nuestra Colección';
-          // opcional: mantener visible con texto por defecto; si se desea ocultar, usar: heroCta.style.display = 'none';
         }
       }
 
-      console.log("[EventoLanding] Landing actualizado:", landing); // muestra en consola el landing actualizado
+  // Landing data applied to DOM
 
       // ====== RENDER SERVICIOS ======
       try {
         const servicesContainer = document.getElementById('Services-flex-cards');
         if (servicesContainer) {
           servicesContainer.innerHTML = '';
+          // Si hay servicios, crear una card por cada uno
           if (Array.isArray(landing.servicios) && landing.servicios.length) {
             landing.servicios.forEach(s => {
               const card = document.createElement('div');
@@ -146,6 +146,7 @@ window.addEventListener("load", () => { // espera a que la página cargue comple
               servicesContainer.appendChild(card);
             });
           } else {
+            // Mensaje sencillo cuando no hay servicios
             servicesContainer.innerHTML = '<p class="small">No hay servicios disponibles</p>';
           }
         }
@@ -160,6 +161,7 @@ window.addEventListener("load", () => { // espera a que la página cargue comple
         const carousel = document.querySelector('.carousel');
         if (carousel) {
           carousel.innerHTML = '';
+          // Tomar testimonios (si vienen) y agruparlos de 3 en 3 para el carrusel
           const testimonies = Array.isArray(landing.testimonies) ? landing.testimonies : [];
           if (testimonies.length) {
             // agrupar de 3 en 3
@@ -200,9 +202,8 @@ window.addEventListener("load", () => { // espera a que la página cargue comple
               carousel.appendChild(group);
             }
 
-            // Inicializar el carrusel si la función existe en otros scripts
+            // Llamar al inicializador del carrusel (si existe) tras inyectar el DOM
             if (typeof iniciarCarrusel === 'function') {
-              // esperar un tick para asegurar que los elementos estén en DOM
               setTimeout(() => iniciarCarrusel(), 50);
             }
 

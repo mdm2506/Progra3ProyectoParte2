@@ -1,12 +1,14 @@
+// Base URL del endpoint de landing (hero + relaciones)
 const LandingUrl = 'http://localhost:3000/api/landing';
 
 
-// GET
+// GET: devuelve el listado de landings en JSON
 function getLandings() {
   return fetch(LandingUrl).then(res => res.json());
 }
 
 //put
+// PUT: actualiza un landing por id, enviando el objeto landing como JSON
 function updateLanding(id, landing) {
   return fetch(`${LandingUrl}/${id}`, {
     method: 'PUT',
@@ -21,6 +23,7 @@ function updateLanding(id, landing) {
     });
 }
 //delete
+// DELETE: elimina un landing por id
 function deleteLanding(id) {
   return fetch(`${LandingUrl}/${id}`, {
     method: 'DELETE'
