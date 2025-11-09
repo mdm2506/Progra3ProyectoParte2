@@ -18,6 +18,8 @@ export class Landing {
 
   @Column()
   slogan: string;
+  @Column()
+  cta: string;
 
   @OneToMany(() => Servicio, (servicio) => servicio.landing)
   servicios: Servicio[];
