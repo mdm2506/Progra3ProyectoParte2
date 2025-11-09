@@ -1,5 +1,4 @@
-// EventosLanding: renderiza hero, servicios y testimonios en la página principal.
-// Mantiene la estructura de testimonio compatible con el HTML existente.
+
 // Crear un item individual de testimonio (misma "figura" que antes)
 function crearItemTestimonio(testimonio) {
   const item = document.createElement('div');

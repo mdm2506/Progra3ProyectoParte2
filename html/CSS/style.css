@@ -24,9 +24,12 @@ body {
     "footer";
   grid-template-rows: auto 1fr auto;
 }
+/* ============================
+   FIN RESET Y CONFIGURACIÓN GLOBAL
+   ============================ */
 
 /* ============================================================
-   ESTILO GENERAL PARA LOS TITULOS DE LAS SECCIONES DE LA PAGINA 
+   ESTILO GENERAL 
   =============================================================*/
 .Section-title {
     position: relative;
@@ -40,24 +43,21 @@ body {
   text-align: center;
   background-color: rgb(240, 141, 125);
   padding: 20px;
-  /* border-radius: 15px;*/
   margin-bottom: 30px;
   text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Armonía rectangular */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
 }
 
-/* =============== 
-    GRID PRINCIPAL
-   =============== */
+/* GRID PRINCIPAL */
 header {
   grid-area: header;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(240, 141, 125, 0.8); /* Semi-transparente inicial */
+  background: rgba(240, 141, 125, 0.8); 
   z-index: 100;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra suave inicial */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); 
   transition: background 0.6s ease, box-shadow 0.6s ease, height 0.6s ease;
 }
 
@@ -82,10 +82,29 @@ footer {
   grid-area: footer;
   text-align: center;
   padding: 20px;
-  background: #f8f9fa; /* Color neutro gris claro */
-  border-top: 1px solid #e9ecef; /* Borde sutil para armonía */
-  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05); /* Sombra inferior suave */
+  background: #f8f9fa;
+  border-top: 1px solid #e9ecef; 
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05); 
 }
+.content {
+  min-height: 100vh;
+  padding: 60px 20px; 
+  background-color: rgb(251, 223, 202);
+  border-radius: 0; 
+}
+
+h2 {
+  margin: 10px 0;
+  font-size: 20px;
+  text-align: center;
+}
+
+span {
+  font-weight: bold;
+}
+/* =====================
+    FIN ESTILO GENERAL
+   ===================== */
 
 /* ===================== 
     NAVEGACIÓN Y HEADER
@@ -161,7 +180,7 @@ header.scrolled .Navbar {
 
 header.scrolled .logo a { 
   font-size: 18px; 
-  color: #333; /* Ajuste para fondo blanco */
+  color: #333; 
 }
 
 header.scrolled .logo img { 
@@ -170,9 +189,12 @@ header.scrolled .logo img {
 }
 
 header.scrolled {
-  background: #ffffff !important; /* Blanco completo al scroll */
+  background: #ffffff !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
 }
+/* ==================
+   FIN NAVEGACIÓN Y HEADER
+   ================== */
 
 /* ===============
     SECCIÓN HERO
@@ -208,7 +230,7 @@ header.scrolled {
   position: relative;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  border-radius: 0; /* Rectángulos limpios */
+  border-radius: 0; 
 }
 
 .tile img {
@@ -240,7 +262,7 @@ header.scrolled {
   font-weight: bold;
   padding: 20px 40px;
   border-radius: 15px;
-  background: rgba(0, 0, 0, 0.3); /* Fondo rectangular armónico */
+  background: rgba(0, 0, 0, 0.3);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -255,13 +277,16 @@ header.scrolled {
   font-weight: bold;
   transition: background 0.3s ease, transform 0.3s ease;
   pointer-events: auto; 
-  box-shadow: 0 4px 8px rgba(240, 141, 125, 0.3); /* Sombra rectangular */
+  box-shadow: 0 4px 8px rgba(240, 141, 125, 0.3);
 }
 
 .cta-button:hover {
   background: rgb(240, 141, 125);
-  transform: translateY(-2px); /* Efecto lift para armonía */
+  transform: translateY(-2px); 
 }
+/* =================
+   FIN SECCIÓN HERO
+   ================= */
 
 /* ================= 
    SECCIÓN ABOUT US 
@@ -271,24 +296,22 @@ header.scrolled {
   margin: 70px auto;
   max-width: 1200px;
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Dos columnas principales: texto/imagen */
-  grid-template-rows: auto auto auto; /* Tres filas: texto, misvis, (imagen abarca todas) */
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: auto auto auto; 
   grid-template-areas:
     "texto imagen"
     "misvis imagen"
-    ". imagen"; /* Imagen abarca filas 1-3 */
+    ". imagen"; 
   gap: 40px;
   align-items: start;
   padding: 40px;
-  /*border-radius: 20px;*/
-  background: rgba(251, 223, 202, 0.8); /* Fondo suave para armonía */
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* Sombra rectangular */
+  background: rgba(251, 223, 202, 0.8); 
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); 
 }
 
 .texto {
   grid-area: texto;
   background-color: #db9475;
-  /* border-radius: 15px;  */
   padding: 25px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   color: #000;
@@ -299,19 +322,18 @@ header.scrolled {
 .misvis {
   grid-area: misvis;
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Misión y Visión lado a lado */
+  grid-template-columns: 1fr 1fr; 
   gap: 20px;
 }
 
 .Mision, .Vision {
   background-color: #db9475;
-  /* border-radius: 12px; */
-  padding: 15px; /* Padding reducido */
+  padding: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   color: #000;
   font-family: Roboto;
-  font-size: 0.9em; /* Fuente más pequeña */
-  min-height: 150px; /* Altura limitada para compacidad */
+  font-size: 0.9em; 
+  min-height: 150px; 
 }
 
 
@@ -323,39 +345,36 @@ p > em {
 
 .texto > h2, .Mision > h2, .Vision > h2 {
   text-align: center;
-  font-size: 1.3rem; /* Títulos más pequeños para M/V */
+  font-size: 1.3rem; 
   font-weight: bold;
   color: #402d24;
   font-family: cinzel;
   margin-bottom: 10px;
 }
 
-/* 1) El grid: 2 filas reales y estiradas */
 #AboutUs {
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto; /* texto y misvis */
+  grid-template-rows: auto auto; 
   grid-template-areas:
     "texto imagen"
     "misvis imagen";
-  align-items: stretch; /* <- clave para igualar alturas */
+  align-items: stretch; 
 }
 
-/* 2) La imagen: ocupa exactamente la altura combinada de texto + misvis */
 #AboutUs .imagen {
   grid-area: imagen;
-  grid-row: 1 / -1;     /* ya abarca ambas filas */
+  grid-row: 1 / -1;    
   position: relative;
-  /* Quitar el aspect ratio para que no limite la altura */
-  /* aspect-ratio: 1 / 1.5;  <- ELIMINAR */
-  height: 100%;         /* rellena el área asignada */
-  min-height: 100%;     /* seguridad extra */
-  /*  border-radius: 16px;*/
+  height: 100%;         
+  min-height: 100%;     
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
   background: url("../IMG/AboutUs.png") center/cover no-repeat;
   margin: 0;
 }
-
+/* =================
+    FIN SECCIÓN ABOUT US 
+   ================= */
 
 /* =================
     SECCIÓN SEASONS 
@@ -368,7 +387,7 @@ p > em {
 
 .pijamas-cards-section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive rectangular */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   justify-items: stretch;
   align-items: stretch;
@@ -382,7 +401,6 @@ p > em {
   margin: 0;
   min-height: 400px;
   border: 2px solid #f0b498;
-  /* border-radius: 15px;  */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
@@ -393,9 +411,8 @@ p > em {
 
 .pijama-card img {
   width: 100%;
-  height: 200px; /* Altura fija para uniformidad */
+  height: 200px; 
   object-fit: cover;
-  /* border-radius: 15px 15px 0 0; */
   display: block;
 }
 
@@ -455,601 +472,7 @@ p > em {
 .pijama-card a:hover {
   background: #d6a189;
 }
-
-/* ====================
-   SECCIÓN DE SERVICIOS
-   ==================== */
-#Services {
-  grid-area: services;
-  min-height: 50vh;
-  width: 100%;
-  padding: 40px 20px;
-}
-
-#Services-flex-cards {
-  display: flex;
-  justify-content: space-between;
-  background-color: rgb(251, 223, 202);
-  text-align: center;
-  align-items: center;
-  min-height: 50vh;
-  overflow-x: auto;
-  padding: 0 20px;
-  gap: 20px; /* Espacio rectangular */
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.card {
-  position: relative;
-  /* border-radius: 18px;*/
-  width: 30%;
-  height: 500px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra armónica */
-  overflow: hidden;
-  transition: all 0.3s ease;
-  flex: 1;
-  min-width: 300px;
-}
-
-.card img {
-  height: 100%;
-  width: 100%;
-  transition: 0.5s;
-  object-fit: cover;
-}
-
-.intro {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 20%;
-  padding: 20px;
-  background: rgba(27, 27, 27, 0.91);
-  color: white;
-  transition: .5s;
-  text-align: center;
-}
-
-.intro h2 {
-  text-align: center;
-  padding-bottom: 10px;
-}
-
-#Services-flex-cards p {
-  font-size: 20px;
-  margin: 10px auto;
-  visibility: hidden;
-  opacity: 0;
-  text-align: center;
-}
-
-.card:hover {
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  transform: translateY(-5px);
-}
-
-.card:hover .intro {
-  height: 220px;
-  width: 100%;
-  background: black;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-/* Continuación de SECCIÓN DE SERVICIOS */
-#Services .card:hover p {
-  opacity: 1;
-  visibility: visible;
-  height: 200px;
-  width: 100%;
-  transition: opacity 0.3s ease;
-}
-
-/* ============================
-     CARRUSEL DE TESTIMONIOS
-   ============================ */
-#Testimonies {
-  grid-area: testimonies;
-  width: 100%;
-  max-width: 100%;
-  min-height: auto;
-  overflow-x: hidden;
-  padding: 40px 20px; /* Padding para armonía */
-}
-
-.carousel-container {
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  max-width: 1200px; /* Centrado rectangular */
- /* border-radius: 20px;   */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.carousel {
-  display: flex;
-  width: 100%;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  transition: transform 0.5s ease;
-  padding: 20px 0;
-}
-
-.carousel-group {
-  display: none;
-  width: 100%;
-  display: flex;
-  gap: 20px; /* Espacio rectangular entre items */
-  justify-content: center;
-  padding: 0 40px; /* Padding lateral para flechas */
-}
-
-/* Nota: .carousel-group se muestra/oculta desde JS; CSS solo define la estructura visual */
-.carousel-item {
-  position: relative;
-  width: 33.33%;
-  opacity: 1;
-  transition: all 0.3s ease;
-  background: #fff;
-  border: 2px solid #ffd8c2;
-  /*border-radius: 15px;   */
-  padding: 25px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra consistente */
-  box-sizing: border-box;
-  min-height: 380px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  transform: none;
-  margin: 0 10px;
-  overflow: hidden;
-}
-
-.carousel-item.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.carousel-item img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin-bottom: 10px;
-  object-fit: cover;
-  border: 3px solid #e67c73;
-  box-shadow: 0 2px 8px rgba(230, 124, 115, 0.2); /* Sombra circular armónica */
-}
-
-.rating {
-  color: #f5a623;
-  font-size: 1.2rem;
-  margin: 5px 0;
-}
-
-.carousel-item p {
-  font-size: 0.95rem;
-  margin: 10px 0;
-  max-height: 4.5em;
-  line-height: 1.4;
-}
-
-.carousel-item h3 {
-  margin-top: 10px;
-  color: #e67c73;
-  font-weight: bold;
-}
-
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #e67c73;
-  color: white;
-  border: none;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%; /* Círculos para flechas, contrastando con rectángulos */
-  cursor: pointer;
-  font-size: 1.8rem;
-  z-index: 10;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(230, 124, 115, 0.3); /* Sombra armónica */
-}
-
-.arrow:hover {
-  background: #d85a4f;
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 6px 16px rgba(230, 124, 115, 0.4);
-}
-
-.left.arrow {
-  left: 10px;
-}
-
-.right.arrow {
-  right: 10px;
-}
-
-/* ========================
-   FIN SECCION DE CARRUSEL
-   ======================== */
-
-/* =========================
-    FORMULARIO DE CONTACTO 
-   ========================= */
-#formulario-seccion {
-  grid-area: contact;
-  min-height: 120vh; /* antes 200vh → menos alto */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 15px; /* menos espacio vertical */
-  background: linear-gradient(135deg, rgb(251, 223, 202), rgba(240, 141, 125, 0.1));
-}
-
-.contenedor-formulario {
-  max-width: 800px; /* antes 1000px → más pequeño */
-  width: 90%; /* adaptable pero más contenido */
-  padding: 30px 25px; /* menos relleno */
-  background: #F0B498;
- /* border-radius: 20px;*/
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(240, 141, 125, 0.3);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.titulo-principal {
-  font-size: 2.6rem; /* más grande */
-  font-weight: bold;
-  color: #A0522D;
-  text-align: center;
-  margin-bottom: 10px;
-  letter-spacing: 2px; /* separa las letras, alarga visualmente */
-  text-transform: uppercase; /* opcional: lo hace más imponente */
-  transform: scaleX(1.1); /* “ensancha” el texto */
-}
-
-
-.subtitulo {
-  color: #A0522D;
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 1.1rem;
-  font-weight: 500;
-}
-
-/* ================================
-   CAMPOS DEL FORMULARIO
-   ================================ */
-.campo {
-  position: relative;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 20px; /* Espacio mayor para alargamiento */
-}
-
-.etiqueta {
-  position: absolute;
-  left: 15px;
-  top: 15px;
-  color: #A0522D;
-  font-size: 16px;
-  transition: all 0.3s ease;
-  pointer-events: none;
-  background: none;
-  font-weight: 600;
-  opacity: 0;
-}
-
-.campo.activo .etiqueta,
-.campo.lleno .etiqueta {
-  opacity: 1;
-  top: -12px;
-  left: 10px;
-  font-size: 14px;
-  color: #fff;
-  background: #F08D7D;
-  padding: 4px 10px;
-  border-radius: 12px; /* Rectángulo para etiqueta flotante */
-  font-weight: 600;
-}
-
-.input-campo,
-.select-campo,
-.textarea-campo {
-  width: 100%;
-  padding: 14px;
-  border: 2px solid #A0522D;
-  border-radius: 10px; /* Bordes rectangulares armónicos */
-  background: #fff;
-  color: #000;
-  font-size: 16px;
-  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-}
-
-.input-campo:focus,
-.select-campo:focus,
-.textarea-campo:focus {
-  outline: none;
-  border-color: #FFBC8A;
-  box-shadow: 0 0 0 3px rgba(240, 141, 125, 0.25), 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra armónica */
-}
-
-.input-campo::placeholder,
-.textarea-campo::placeholder {
-  color: #808080;
-}
-
-.campo.correcto .input-campo,
-.campo.correcto .select-campo,
-.campo.correcto .textarea-campo {
-  border-color: #A0522D;
-}
-
-.campo.error .input-campo,
-.campo.error .select-campo,
-.campo.error .textarea-campo {
-  border-color: #FF6347;
-  animation: shake 0.5s ease-in-out;
-  box-shadow: 0 0 0 3px rgba(255, 99, 71, 0.25);
-}
-
-@keyframes shake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-6px); }
-  75% { transform: translateX(6px); }
-  100% { transform: translateX(0); }
-}
-
-/* ================================
-   MENSAJES DE ERROR
-   ================================ */
-.mensaje-error {
-  color: #FF6347;
-  font-size: 14px;
-  margin-top: 6px;
-  display: none;
-}
-
-.mensaje-error.mostrar {
-  display: block;
-}
-
-/* ================================
-   TEXTAREA (MÁS ALARGADO)
-   ================================ */
-.textarea-campo {
-  resize: vertical;
-  min-height: 150px; /* Altura aumentada para formulario más alargado */
-  max-height: 250px;
-  padding-top: 16px;
-}
-
-/* ================================
-   BOTONES DEL FORMULARIO
-   ================================ */
-.boton-enviar {
-  background: linear-gradient(135deg, #A0522D, #F08D7D);
-  color: #fff;
-  padding: 20px 100px; /* Aumenta el tamaño: alto y ancho */
-  border: none;
-  border-radius: 16px;
-  font-size: 1.6rem; /* texto grande */
-  font-weight: 700; /* más grueso */
-  cursor: pointer;
-  text-transform: uppercase; /* para más presencia */
-  letter-spacing: 2px;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 24px rgba(160, 82, 45, 0.4);
-  margin-top: 40px; /* separa del resto del contenido */
-  align-self: center; /* centrado dentro del contenedor */
-}
-
-.boton-enviar:hover {
-  transform: scale(1.08);
-  background: linear-gradient(135deg, #F08D7D, #FFBC8A);
-  box-shadow: 0 12px 32px rgba(160, 82, 45, 0.5);
-}
-
-
-
-.primary-button {
-  background-color: #F08D7D;
-  color: #fff;
-}
-
-.primary-button:hover {
-  background-color: #f08d7d;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(240, 141, 125, 0.4);
-}
-
-.disable-button {
-  background-color: #808080;
-  color: #fff;
-  cursor: not-allowed;
-  opacity: 0.6;
-  box-shadow: none;
-}
-
-/* ================================
-   CONTADOR DE CARACTERES
-   ================================ */
-.contador-caracteres {
-  text-align: right;
-  font-size: 14px;
-  color: #A0522D;
-  margin-top: 4px;
-  font-weight: 500;
-}
-
-/* ===================== 
-    ELEMENTOS GENERALES
-   ===================== */
-.content {
-  min-height: 100vh;
-  padding: 60px 20px; /* Padding consistente para todas las secciones */
-  background-color: rgb(251, 223, 202);
-  border-radius: 0; /* Sin bordes en contenedores generales para flujo */
-}
-
-h2 {
-  margin: 10px 0;
-  font-size: 20px;
-  text-align: center;
-}
-
-span {
-  font-weight: bold;
-}
-
-/*============================
-           FOOTER (ARMÓNICO)
-  ============================*/
-.social-links {
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: center;
-  gap: 20px; /* Espacio rectangular entre links */
-  flex-wrap: wrap;
-}
-
-.social-link {
-  display: inline-flex;
-  align-items: center;
-  font-size: 1.2em;
-  color: #ddb7b7;
-  margin: 0 10px;
-  text-decoration: none;
-  transition: color 0.3s ease, transform 0.3s ease;
-  padding: 10px 15px; /* Rectángulos para links sociales */
-  border-radius: 10px;
-  background: rgba(171, 159, 156, 0.1); /* Fondo sutil */
-  border: 1px solid rgba(240, 141, 125, 0.2);
-}
-
-.social-link:hover {
-  color: #d6a791;
-  text-decoration: none;
-  transform: translateY(-2px);
-  background: rgba(242, 131, 114, 0.2);
-  box-shadow: 0 4px 8px rgba(220, 149, 138, 0.15);
-}
-
-.social-link::before {
-  font-family: "Font Awesome 6 Brands";
-  font-weight: 400;
-  display: inline-block;
-  width: 1.2em;
-  opacity: 0;
-  transform: translateX(-0.5em);
-  transition: transform .3s ease, opacity .2s ease;
-  margin-right: 0.25em;
-}
-
-.facebook::before {
-  content: "\f09a";
-}
-
-.instagram::before {
-  content: "\f16d";
-}
-
-.whatsapp::before {
-  content: "\f232";
-}
-
-.tipo2:hover::before {
-  transform: translateX(0);
-  opacity: 1;
-}
-footer {
-  font-size: 1em;
-  padding: 20px;
-  background: #5c5c5e; /* Color neutro gris claro */
-  border-top: 1px solid #e9ecef; /* Borde sutil para armonía */
-  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05); /* Sombra inferior suave */
-}
-
-footer p {
-  margin-top: 15px;
-  color: #d1afaf;
-  font-size: 0.9em;
-}
-
-/* ===================== 
-    RESPONSIVE (ARMÓNICO)
-   ===================== */
-@media (max-width: 768px) {
-  .Navbar {
-    flex-direction: column !important;
-    padding: 15px;
-  }
-  
-  .nav-links {
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  #AboutUs {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "texto"
-      "misvis"
-      "imagen";
-    gap: 20px;
-    padding: 20px;
-  }
-  
-  .misvis {
-    grid-template-columns: 1fr;
-  }
-  
-  .pijamas-cards-section {
-    grid-template-columns: 1fr;
-  }
-  
-  #Services-flex-cards {
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .card {
-    width: 100%;
-    height: 400px;
-  }
-  
-  .carousel-group {
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .carousel-item {
-    width: 100%;
-  }
-  
-  .contenedor-formulario {
-    padding: 40px 20px;
-    margin: 20px;
-  }
-  
-  .arrow {
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
-  }
-}
-
-/* Estilos para el modal */
+/* MODAL DE INFORMACIÓN */
 .modal {
   display: none;
   position: fixed;
@@ -1157,3 +580,573 @@ footer p {
 .more-info-btn:hover {
   background: #d6a189;
 }
+/* ===================== 
+    FIN SECCIÓN SEASONS 
+   ===================== */
+
+/* ====================
+   SECCIÓN DE SERVICIOS
+   ==================== */
+#Services {
+  grid-area: services;
+  min-height: 50vh;
+  width: 100%;
+  padding: 40px 20px;
+}
+
+#Services-flex-cards {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(251, 223, 202);
+  text-align: center;
+  align-items: center;
+  min-height: 50vh;
+  overflow-x: auto;
+  padding: 0 20px;
+  gap: 20px; 
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  position: relative;
+  width: 30%;
+  height: 500px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+  overflow: hidden;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 300px;
+}
+
+.card img {
+  height: 100%;
+  width: 100%;
+  transition: 0.5s;
+  object-fit: cover;
+}
+
+.intro {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 20%;
+  padding: 20px;
+  background: rgba(27, 27, 27, 0.91);
+  color: white;
+  transition: .5s;
+  text-align: center;
+}
+
+.intro h2 {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+#Services-flex-cards p {
+  font-size: 20px;
+  margin: 10px auto;
+  visibility: hidden;
+  opacity: 0;
+  text-align: center;
+}
+
+.card:hover {
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}
+
+.card:hover .intro {
+  height: 220px;
+  width: 100%;
+  background: black;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+/* hover SECCIÓN DE SERVICIOS */
+#Services .card:hover p {
+  opacity: 1;
+  visibility: visible;
+  height: 200px;
+  width: 100%;
+  transition: opacity 0.3s ease;
+}
+
+/* ============================
+     CARRUSEL DE TESTIMONIOS
+   ============================ */
+#Testimonies {
+  grid-area: testimonies;
+  width: 100%;
+  max-width: 100%;
+  min-height: auto;
+  overflow-x: hidden;
+  padding: 40px 20px; 
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  max-width: 1200px; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.carousel {
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  transition: transform 0.5s ease;
+  padding: 20px 0;
+}
+
+.carousel-group {
+  display: none;
+  width: 100%;
+  display: flex;
+  gap: 20px; 
+  justify-content: center;
+  padding: 0 40px; 
+}
+.carousel-item {
+  position: relative;
+  width: 33.33%;
+  opacity: 1;
+  transition: all 0.3s ease;
+  background: #fff;
+  border: 2px solid #ffd8c2;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+  box-sizing: border-box;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  transform: none;
+  margin: 0 10px;
+  overflow: hidden;
+}
+
+.carousel-item.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.carousel-item img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  object-fit: cover;
+  border: 3px solid #e67c73;
+  box-shadow: 0 2px 8px rgba(230, 124, 115, 0.2); /* Sombra circular armónica */
+}
+
+.rating {
+  color: #f5a623;
+  font-size: 1.2rem;
+  margin: 5px 0;
+}
+
+.carousel-item p {
+  font-size: 0.95rem;
+  margin: 10px 0;
+  max-height: 4.5em;
+  line-height: 1.4;
+}
+
+.carousel-item h3 {
+  margin-top: 10px;
+  color: #e67c73;
+  font-weight: bold;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #e67c73;
+  color: white;
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; /* Círculos para flechas, contrastando con rectángulos */
+  cursor: pointer;
+  font-size: 1.8rem;
+  z-index: 10;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(230, 124, 115, 0.3); /* Sombra armónica */
+}
+
+.arrow:hover {
+  background: #d85a4f;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 16px rgba(230, 124, 115, 0.4);
+}
+
+.left.arrow {
+  left: 10px;
+}
+
+.right.arrow {
+  right: 10px;
+}
+
+/* ========================
+   FIN SECCION DE CARRUSEL
+   ======================== */
+
+/* =========================
+    FORMULARIO DE CONTACTO 
+   ========================= */
+#formulario-seccion {
+  grid-area: contact;
+  min-height: 120vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 15px; 
+  background: linear-gradient(135deg, rgb(251, 223, 202), rgba(240, 141, 125, 0.1));
+}
+
+.contenedor-formulario {
+  max-width: 800px; 
+  width: 90%; 
+  padding: 30px 25px; 
+  background: #F0B498;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(240, 141, 125, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titulo-principal {
+  font-size: 2.6rem; 
+  font-weight: bold;
+  color: #A0522D;
+  text-align: center;
+  margin-bottom: 10px;
+  letter-spacing: 2px; 
+  text-transform: uppercase;
+  transform: scaleX(1.1); 
+}
+
+
+.subtitulo {
+  color: #A0522D;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* CAMPOS DEL FORMULARIO */
+.campo {
+  position: relative;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px; 
+}
+
+.etiqueta {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  color: #A0522D;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  background: none;
+  font-weight: 600;
+  opacity: 0;
+}
+
+.campo.activo .etiqueta,
+.campo.lleno .etiqueta {
+  opacity: 1;
+  top: -12px;
+  left: 10px;
+  font-size: 14px;
+  color: #fff;
+  background: #F08D7D;
+  padding: 4px 10px;
+  border-radius: 12px; 
+  font-weight: 600;
+}
+
+.input-campo,
+.select-campo,
+.textarea-campo {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #A0522D;
+  border-radius: 10px;
+  background: #fff;
+  color: #000;
+  font-size: 16px;
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-campo:focus,
+.select-campo:focus,
+.textarea-campo:focus {
+  outline: none;
+  border-color: #FFBC8A;
+  box-shadow: 0 0 0 3px rgba(240, 141, 125, 0.25), 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra armónica */
+}
+
+.input-campo::placeholder,
+.textarea-campo::placeholder {
+  color: #808080;
+}
+
+.campo.correcto .input-campo,
+.campo.correcto .select-campo,
+.campo.correcto .textarea-campo {
+  border-color: #A0522D;
+}
+
+.campo.error .input-campo,
+.campo.error .select-campo,
+.campo.error .textarea-campo {
+  border-color: #FF6347;
+  animation: shake 0.5s ease-in-out;
+  box-shadow: 0 0 0 3px rgba(255, 99, 71, 0.25);
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+  100% { transform: translateX(0); }
+}
+
+/* MENSAJES DE ERROR*/
+.mensaje-error {
+  color: #FF6347;
+  font-size: 14px;
+  margin-top: 6px;
+  display: none;
+}
+
+.mensaje-error.mostrar {
+  display: block;
+}
+
+/* TEXTAREA  */
+.textarea-campo {
+  resize: vertical;
+  min-height: 150px; 
+  max-height: 250px;
+  padding-top: 16px;
+}
+
+/* BOTONES DEL FORMULARIO */
+.boton-enviar {
+  background: linear-gradient(135deg, #A0522D, #F08D7D);
+  color: #fff;
+  padding: 20px 100px;
+  border: none;
+  border-radius: 16px;
+  font-size: 1.6rem; 
+  font-weight: 700; 
+  cursor: pointer;
+  text-transform: uppercase; 
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(160, 82, 45, 0.4);
+  margin-top: 40px; 
+  align-self: center;
+}
+
+.boton-enviar:hover {
+  transform: scale(1.08);
+  background: linear-gradient(135deg, #F08D7D, #FFBC8A);
+  box-shadow: 0 12px 32px rgba(160, 82, 45, 0.5);
+}
+
+
+
+.primary-button {
+  background-color: #F08D7D;
+  color: #fff;
+}
+
+.primary-button:hover {
+  background-color: #f08d7d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(240, 141, 125, 0.4);
+}
+
+.disable-button {
+  background-color: #808080;
+  color: #fff;
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+/* CONTADOR DE CARACTERES */
+.contador-caracteres {
+  text-align: right;
+  font-size: 14px;
+  color: #A0522D;
+  margin-top: 4px;
+  font-weight: 500;
+}
+/* =====================
+   FIN FORMULARIO CONTACTO
+   ===================== */
+
+
+/*============================
+           FOOTER 
+  ============================*/
+.social-links {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 20px; 
+  flex-wrap: wrap;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.2em;
+  color: #ddb7b7;
+  margin: 0 10px;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+  padding: 10px 15px; 
+  border-radius: 10px;
+  background: rgba(171, 159, 156, 0.1);
+  border: 1px solid rgba(240, 141, 125, 0.2);
+}
+
+.social-link:hover {
+  color: #d6a791;
+  text-decoration: none;
+  transform: translateY(-2px);
+  background: rgba(242, 131, 114, 0.2);
+  box-shadow: 0 4px 8px rgba(220, 149, 138, 0.15);
+}
+
+.social-link::before {
+  font-family: "Font Awesome 6 Brands";
+  font-weight: 400;
+  display: inline-block;
+  width: 1.2em;
+  opacity: 0;
+  transform: translateX(-0.5em);
+  transition: transform .3s ease, opacity .2s ease;
+  margin-right: 0.25em;
+}
+
+.facebook::before {
+  content: "\f09a";
+}
+
+.instagram::before {
+  content: "\f16d";
+}
+
+.whatsapp::before {
+  content: "\f232";
+}
+
+.tipo2:hover::before {
+  transform: translateX(0);
+  opacity: 1;
+}
+footer {
+  font-size: 1em;
+  padding: 20px;
+  background: #5c5c5e; 
+  border-top: 1px solid #e9ecef; 
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05); 
+}
+
+footer p {
+  margin-top: 15px;
+  color: #d1afaf;
+  font-size: 0.9em;
+}
+/* ===================== 
+    FIN FOOTER
+   ===================== */
+
+/* ===================== 
+    RESPONSIVE DESIGN
+   ===================== */
+@media (max-width: 768px) {
+  .Navbar {
+    flex-direction: column !important;
+    padding: 15px;
+  }
+  
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  #AboutUs {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "texto"
+      "misvis"
+      "imagen";
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .misvis {
+    grid-template-columns: 1fr;
+  }
+  
+  .pijamas-cards-section {
+    grid-template-columns: 1fr;
+  }
+  
+  #Services-flex-cards {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .card {
+    width: 100%;
+    height: 400px;
+  }
+  
+  .carousel-group {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .carousel-item {
+    width: 100%;
+  }
+  
+  .contenedor-formulario {
+    padding: 40px 20px;
+    margin: 20px;
+  }
+  
+  .arrow {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+}
+/* ===================== 
+    FIN RESPONSIVE DESIGN
+   ===================== */
