@@ -23,6 +23,9 @@ export class Testimony {
   @Column({ nullable: true })
   rating: string;
 
+  @CreateDateColumn({ type: 'timestamp' })
+  createdAt: Date;
+
   @ManyToOne(() => Landing, (landing) => landing.id, {
     eager: true,
   })
