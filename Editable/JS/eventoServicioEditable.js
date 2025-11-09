@@ -1,5 +1,6 @@
 // eventoServicioEditable.js
 (function () {
+    // Editor de servicios: carga, muestra y permite editar servicios
      const tblBody = document.getElementById('services-tbl-body');     // <tbody> donde se pintan las filas de servicios
     const btnRefresh = document.getElementById('btn-refresh-service'); // Botón para recargar la lista de servicios
     const form = document.getElementById('service-form');              // Formulario para editar un servicio
@@ -12,6 +13,7 @@
     const previewDesc = document.getElementById('preview-desc-service');   // Texto de preview de la descripción
     const status = document.getElementById('status-service');          // Área para mensajes de estado/errores
     const btnSave = document.getElementById('btn-save-service');       // Botón de guardar cambios
+    const btnCancelService = document.getElementById('btn-cancel-service'); // Botón cancelar (limpia el form)
 
     let data = []; // Memoria local con la lista de servicios cargados
 
@@ -32,12 +34,13 @@
             .replace(/'/g, '&#39;');
     }
 
-    // Cargar y renderizar los servicios
+    // Cargar y renderizar los servicios en la tabla
     async function loadAndRenderServices() { // Trae la lista y la dibuja en la tabla
         setStatus('Cargando servicios...');
         try {
-            const list = await getServicios(); // un fetch
-            data = list || [];  // Guarda en memoria local
+            // Obtener la lista desde el wrapper getServicios()
+            const list = await getServicios();
+            data = list || [];
 
             if (!data.length) { // si ta vacio, muestra no hay sistema en columnas
                 tblBody.innerHTML = '<tr><td colspan="4" class="small">No hay servicios</td></tr>';
@@ -70,6 +73,7 @@
         }
     }
 
+    // Limpiar formulario del editor de servicio
     function clearForm() { // limpiar formulario
         idI.value = '';
         titleI.value = '';
@@ -80,6 +84,7 @@
         previewDesc.textContent = '';
     }
 
+    // Cargar un servicio en el formulario para editar
     async function selectForEdit(id) { // carga un servicio en el formulario para editar
         const s = data.find(x => String(x.id) === String(id)); // Busca en la lista local por ID
         if (!s) return setStatus('Servicio no encontrado', true); // Si no existe, avisa
@@ -93,7 +98,8 @@
         previewDesc.textContent = s.descripcion || '';
     }
 
-    imgI.addEventListener('input', () => { // preview de la imagen del logo cuando se pone una URL
+    // Actualizar preview de imagen al ingresar URL
+    imgI.addEventListener('input', () => { 
         imgPreview.src = imgI.value || '../html/IMG/Logo.png';
     });
 
@@ -103,6 +109,7 @@
     }));
 
 
+    // Manejo del submit: validar y enviar actualización al backend
     form.addEventListener('submit', async e => { // envia formulario
         e.preventDefault(); // evita que recargue la pagina
         const id = idI.value; // toma ID actual (si hay, es edición)
@@ -133,6 +140,8 @@
         }
     });
 
+    // Botones públicos
+    if (btnCancelService) btnCancelService.addEventListener('click', () => clearForm());
     btnRefresh.addEventListener('click', () => loadAndRenderServices());
     window.addEventListener('load', () => loadAndRenderServices());
 })();

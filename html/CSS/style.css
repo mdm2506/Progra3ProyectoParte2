@@ -589,6 +589,7 @@ p > em {
   padding: 0 40px; /* Padding lateral para flechas */
 }
 
+/* Nota: .carousel-group se muestra/oculta desde JS; CSS solo define la estructura visual */
 .carousel-item {
   position: relative;
   width: 33.33%;

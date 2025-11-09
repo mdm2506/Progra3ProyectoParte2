@@ -1,4 +1,5 @@
 (function () {
+    // Editor de testimonios: gestiona la tabla, el formulario y llamadas a la API
     // Elemento donde ponemos las filas de la tabla
     const tblBody = document.getElementById('tbl-body');
     // Botón para recargar la lista
@@ -35,10 +36,10 @@
     // Array que contendrá los testimonios cargados
     let data = [];
 
-    // Función para mostrar mensajes en el área de estado
-    function setStatus(msg, isError) { // msg: texto a mostrar, isError: si es true pinta el texto en rojo
-        status.textContent = msg || ''; // muestra el mensaje o vacío
-        status.style.color = isError ? '#b00020' : '#333'; // pinta en rojo si es error
+    // Mostrar mensajes de estado (error -> rojo)
+    function setStatus(msg, isError) {
+        status.textContent = msg || '';
+        status.style.color = isError ? '#b00020' : '#333';
     }
     
     // Función que habilita/deshabilita un elemento (botón) según 'on'
@@ -46,18 +47,15 @@
         el.disabled = on; // deshabilita si on es true y habilita si es false
     }
 
-    // Llama a la API para obtener todos los testimonios
+    // Llama a la API para obtener todos los testimonios (usa wrapper si existe)
     async function apiGetAll() {
         try {
-            // Si existe la API simplificada, la usamos
             if (window.TestimoniosAPI) return await window.TestimoniosAPI.getAll();
-            // Si no, hacemos fetch al endpoint tradicional
-            const r = await fetch('/testimonies'); // ruta de la API
-            if (!r.ok) throw new Error(r.status); // verifica que la respuesta sea correcta
-            return await r.json(); // retorna la respuesta en JSON
-        } catch (e) { 
-            // Propagamos el error hacia quien llamó
-            throw e; 
+            const r = await fetch('/testimonies');
+            if (!r.ok) throw new Error(r.status);
+            return await r.json();
+        } catch (e) {
+            throw e;
         }
     }
 
@@ -87,15 +85,15 @@
         });
     }
 
-    // Función para escapar texto y evitar inyección de HTML
-    function escapeHtml(str) { 
-        if (!str) return ''; 
+    // Escapa texto para prevenir inyección HTML
+    function escapeHtml(str) {
+        if (!str) return '';
         return String(str)
             .replace(/&/g, '&amp;')
             .replace(/</g, '&lt;')
             .replace(/>/g, '&gt;')
             .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#39;'); 
+            .replace(/'/g, '&#39;');
     }
 
     // Carga la lista y la muestra en la tabla, manejando errores
@@ -111,8 +109,8 @@
         }
     }
 
-    // Limpia el formulario y vuelve la vista previa a valores por defecto
-    function clearForm() { 
+    // Limpiar formulario y vista previa a valores por defecto
+    function clearForm() {
         idI.value = ''; 
         nameI.value = ''; 
         ratingI.value = ''; 
@@ -140,9 +138,9 @@
         document.getElementById('form-title').textContent = 'Editar — ' + (t.name || '');
     }
 
-    // Cuando cambia la URL de imagen actualizamos la vista previa
-    imgI.addEventListener('input', () => { 
-        imgPreview.src = imgI.value || 'IMG/Logo.png'; 
+    // Actualiza la vista previa cuando se cambia la URL de la imagen
+    imgI.addEventListener('input', () => {
+        imgPreview.src = imgI.value || 'IMG/Logo.png';
     });
     
     // Mientras se escribe nombre o calificación, actualizamos la vista previa
@@ -203,9 +201,9 @@
                 if (created && created.id) idI.value = created.id;
             }
             
-            // Recarga y avisa a la ventana padre si existe
-            await loadAndRender(); // Recarga la tabla actualizada
-            notifyParent(); // Avisa al padre
+            // Recargar lista y notificar a ventana padre si aplica
+            await loadAndRender();
+            notifyParent();
         } catch (err) { 
             console.error(err); 
             setStatus('Error al guardar: ' + (err.message || err), true); 

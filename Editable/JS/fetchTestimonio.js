@@ -1,42 +1,40 @@
-const API_URL = 'http://localhost:3000/api/testimonies'; // URL base donde está la API de testimonios en el backend local
+// Wrapper simple para la API de testimonios (frontend editable)
+const API_URL = 'http://localhost:3000/api/testimonies';
 
-// API simplificada de testimonios
 const TestimoniosAPI = {
-  // Obtener todos los testimonios
+  // getAll: devuelve todos los testimonios (promesa JSON)
   getAll() {
-    return fetch(API_URL).then(res => res.json()); // hace fetch a la ruta y retorna la respuesta en JSON
+    return fetch(API_URL).then(res => res.json());
   },
 
-  // Obtener un testimonio por id
+  // getById: devuelve un testimonio por id
   getById(id) {
-    return fetch(`${API_URL}/${id}`).then(res => res.json()); // hace fetch a la ruta con id y retorna la respuesta en JSON
+    return fetch(`${API_URL}/${id}`).then(res => res.json());
   },
 
-  // Crear un testimonio
+  // create: crea un testimonio (POST)
   create(testimonio) {
-    return fetch(API_URL, { // hace un POST a la ruta base
-      method: 'POST', //metodo POST
-      headers: { 'Content-Type': 'application/json' }, //tipo de contenido JSON
-      body: JSON.stringify(testimonio) //convierte el objeto testimonio a JSON
-    }).then(res => res.json()); //retorna la respuesta en JSON
+    return fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(testimonio)
+    }).then(res => res.json());
   },
 
-  // Actualizar un testimonio
+  // update: actualiza un testimonio por id (PUT)
   update(id, testimonio) {
-    return fetch(`${API_URL}/${id}`, { // hace un PUT a la ruta con id
-      method: 'PUT', //metodo PUT
-      headers: { 'Content-Type': 'application/json' }, //tipo de contenido JSON
-      body: JSON.stringify(testimonio) //convierte el objeto testimonio a JSON
-    }).then(res => res.json()); //retorna la respuesta en JSON
+    return fetch(`${API_URL}/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(testimonio)
+    }).then(res => res.json());
   },
 
-  // Eliminar un testimonio
+  // delete: elimina un testimonio por id
   delete(id) {
-    return fetch(`${API_URL}/${id}`, { // hace un DELETE a la ruta con id
-      method: 'DELETE' //metodo DELETE
-    }).then(res => res.json()); //retorna la respuesta en JSON
+    return fetch(`${API_URL}/${id}`, { method: 'DELETE' }).then(res => res.json());
   }
 };
 
-// Uso globalmente
-window.TestimoniosAPI = TestimoniosAPI; // hace que el objeto esté disponible en toda la página
+// Exponer como global para que los scripts de la UI lo usen
+window.TestimoniosAPI = TestimoniosAPI;
