@@ -50,7 +50,7 @@ export class LandingService {
   async getLandingById(id: number): Promise<Landing> {
     const landing = await this.landingRepository.findOne({
       where: { id },
-      relations: ['servicios', 'testimonies'], // 🔥 Incluye las relaciones
+      relations: ['servicios', 'testimonies'],
     });
 
     if (!landing) {
