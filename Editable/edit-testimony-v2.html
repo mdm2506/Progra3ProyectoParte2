@@ -159,12 +159,13 @@
             <tr>
               <th>Logo URL</th>
               <th>Slogan</th>
+              <th>CTA</th>
               <th></th>
             </tr>
           </thead>
           <tbody id="landing-tbl-body">
             <tr>
-              <td colspan="3" class="small">Cargando...</td>
+              <td colspan="4" class="small">Cargando...</td>
             </tr>
           </tbody>
         </table>
@@ -184,12 +185,19 @@
           <label for="landing-slogan">Slogan</label>
           <input id="landing-slogan" type="text" placeholder="Ej: Tu bienestar, nuestra prioridad" required />
         </div>
+        <div>
+          <label for="landing-cta">CTA (texto del botón)</label>
+          <input id="landing-cta" type="text" placeholder="Ej: Explora Nuestra Colección" />
+        </div>
 
         <div class="preview-row">
           <img id="landing-logo-preview" class="avatar" src="../html/IMG/Logo.png" alt="preview" />
           <div style="flex:1">
             <div class="small">Vista previa</div>
             <div id="preview-slogan-landing" style="font-weight:700;color:var(--accent)"></div>
+            <div style="margin-top:8px">
+              <a id="landing-cta-preview" class="cta-button" href="#Seasons" style="display:none;padding:6px 10px;text-decoration:none;border-radius:4px;background:#e06f63;color:#fff">CTA</a>
+            </div>
           </div>
         </div>
 
@@ -206,10 +214,10 @@
 
   <!--TODO Incluir scripts -->
   <!--* Servicios -->
-  <script src="../html/JS/fetchServico.js"></script>
+  <script src="/Editable/JS/fetchServico.js"></script>
   <script src="/Editable/JS/eventoServicioEditable.js"></script>
   <!--* testimonios -->
-  <script src="../html/JS/fetchTestimonio.js"></script>
+  <script src="/Editable/JS/fetchTestimonio.js"></script>
   <script src="/Editable/JS/eventoTestimonioEditable.js"></script>
   <!--* Landing -->
   <script src="../html/JS/fetchLanding.js"></script>
