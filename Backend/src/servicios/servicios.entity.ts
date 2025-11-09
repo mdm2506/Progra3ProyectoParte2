@@ -15,8 +15,6 @@ export class Servicio {
   @Column()
   urlImagen: string;
 
-  @ManyToOne(() => Landing, (landing) => landing.id, {
-    eager: true,
-  })
+  @ManyToOne(() => Landing, (landing) => landing.servicios)
   landing: Landing;
 }
