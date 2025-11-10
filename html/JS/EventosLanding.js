@@ -1,5 +1,4 @@
-
-// Crear un item individual de testimonio (misma "figura" que antes)
+// Crear un item individual de testimonio 
 function crearItemTestimonio(testimonio) {
   const item = document.createElement('div');
   item.classList.add('carousel-item');
@@ -30,7 +29,7 @@ function crearItemTestimonio(testimonio) {
   return item;
 }
 
-// Inicializar carrusel (misma lógica que antes)
+// Inicializar carrusel 
 function iniciarCarrusel() {
   const grupos = document.querySelectorAll('.carousel-group');
   const btnIzq = document.querySelector('.left.arrow');
@@ -72,25 +71,23 @@ function iniciarCarrusel() {
   mostrarGrupo();
 }
 
-// getLandings is provided by JS/fetchLanding.js which centralizes API calls.
-
 window.addEventListener("load", () => { // espera a que la página cargue completamente
-  // Pedimos al servidor los datos de landing (hero + servicios + testimonios)
+  // Pedimos al servidor los datos de landing (hero, servicios, testimonios)
   getLandings()
-    .then((landings) => { // maneja la respuesta
-      const heroLogo = document.getElementById("hero-logo"); // selecciona el elemento del logo del hero
-      const heroSlogan = document.getElementById("hero-slogan"); // selecciona el elemento del slogan del hero
-      const heroCta = document.getElementById("hero-cta"); // botón/anchor principal del hero
+    .then((landings) => {
+      const heroLogo = document.getElementById("hero-logo");
+      const heroSlogan = document.getElementById("hero-slogan");
+      const heroCta = document.getElementById("hero-cta");
 
-      if (!landings || landings.length === 0) { // verifica si hay datos de landing
-        console.warn("[EventoLanding] No hay datos de landing disponibles."); // muestra una advertencia si no hay datos
+      if (!landings || landings.length === 0) {
+        // muestra una advertencia si no hay datos
+        console.warn("[EventoLanding] No hay datos de landing disponibles.");
         return;
       }
 
-      const landing = landings[0]; // toma el primer landing (asumiendo que solo hay uno)
+      const landing = landings[0];
 
       // ===== LOGO DEL HEADER =====
-      // Logo: si el landing tiene logo, lo mostramos; si no, lo ocultamos
       if (landing.logoUrl) {
         heroLogo.src = landing.logoUrl;
         heroLogo.alt = `Logo Landing #${landing.id}`;
@@ -100,13 +97,11 @@ window.addEventListener("load", () => { // espera a que la página cargue comple
       }
 
       // ===== SLOGAN DEL HERO =====
-      // Slogan: mostrar el slogan del landing o un valor por defecto
+      // Slogan
       if (heroSlogan) {
         heroSlogan.textContent = landing.slogan || "Vestimos tus sueños";
       }
-
-      // ===== CTA DEL HERO =====
-      // CTA: rellenar texto del botón principal si viene en el landing
+      //  texto del botón principal 
       if (heroCta) {
         if (landing.cta) {
           heroCta.textContent = landing.cta;
@@ -116,14 +111,12 @@ window.addEventListener("load", () => { // espera a que la página cargue comple
         }
       }
 
-  // Landing data applied to DOM
-
       // ====== RENDER SERVICIOS ======
       try {
         const servicesContainer = document.getElementById('Services-flex-cards');
         if (servicesContainer) {
           servicesContainer.innerHTML = '';
-          // Si hay servicios, crear una card por cada uno
+          // Si hay servicios, crea una card por cada uno
           if (Array.isArray(landing.servicios) && landing.servicios.length) {
             landing.servicios.forEach(s => {
               const card = document.createElement('div');
@@ -145,22 +138,21 @@ window.addEventListener("load", () => { // espera a que la página cargue comple
               servicesContainer.appendChild(card);
             });
           } else {
-            // Mensaje sencillo cuando no hay servicios
+            // Mensaje para cuando no hay servicios
             servicesContainer.innerHTML = '<p class="small">No hay servicios disponibles</p>';
           }
         }
       } catch (err) {
         console.error('[EventoLanding] Error renderizando servicios', err);
       }
-          // señalizamos que servicios ya fueron cargados en el DOM
-          window.LANDING_SERVICES_LOADED = true;
+      window.LANDING_SERVICES_LOADED = true;
 
       // ====== RENDER TESTIMONIOS EN EL CARRUSEL ======
       try {
         const carousel = document.querySelector('.carousel');
         if (carousel) {
           carousel.innerHTML = '';
-          // Tomar testimonios (si vienen) y agruparlos de 3 en 3 para el carrusel
+          // agrupar los testimonios de 3 en 3 para el carrusel
           const testimonies = Array.isArray(landing.testimonies) ? landing.testimonies : [];
           if (testimonies.length) {
             // agrupar de 3 en 3
@@ -168,45 +160,41 @@ window.addEventListener("load", () => { // espera a que la página cargue comple
               const group = document.createElement('div');
               group.classList.add('carousel-group');
               const subset = testimonies.slice(i, i + 3);
-                subset.forEach(t => {
-                  // Use shared creator if available to keep the exact same structure
-                  let item;
-                  if (typeof crearItemTestimonio === 'function') {
-                    item = crearItemTestimonio(t);
-                  } else {
-                    item = document.createElement('div');
-                    item.classList.add('carousel-item');
-                    if (t.img) {
-                      const img = document.createElement('img');
-                      img.src = t.img;
-                      img.alt = t.name || '';
-                      img.classList.add('testimonial-img');
-                      item.appendChild(img);
-                    }
-                    const stars = document.createElement('div');
-                    stars.classList.add('testimonial-stars');
-                    const rating = Math.min(Math.max(Number(t.rating) || 0, 0), 5);
-                    stars.innerHTML = '⭐'.repeat(rating) + '☆'.repeat(5 - rating);
-                    item.appendChild(stars);
-                    const p = document.createElement('p');
-                    p.textContent = t.text || '';
-                    item.appendChild(p);
-                    const h3 = document.createElement('h3');
-                    h3.textContent = t.name || '';
-                    item.appendChild(h3);
+              subset.forEach(t => {
+                let item;
+                if (typeof crearItemTestimonio === 'function') {
+                  item = crearItemTestimonio(t);
+                } else {
+                  item = document.createElement('div');
+                  item.classList.add('carousel-item');
+                  if (t.img) {
+                    const img = document.createElement('img');
+                    img.src = t.img;
+                    img.alt = t.name || '';
+                    img.classList.add('testimonial-img');
+                    item.appendChild(img);
                   }
+                  const stars = document.createElement('div');
+                  stars.classList.add('testimonial-stars');
+                  const rating = Math.min(Math.max(Number(t.rating) || 0, 0), 5);
+                  stars.innerHTML = '⭐'.repeat(rating) + '☆'.repeat(5 - rating);
+                  item.appendChild(stars);
+                  const p = document.createElement('p');
+                  p.textContent = t.text || '';
+                  item.appendChild(p);
+                  const h3 = document.createElement('h3');
+                  h3.textContent = t.name || '';
+                  item.appendChild(h3);
+                }
 
-                  group.appendChild(item);
-                });
+                group.appendChild(item);
+              });
               carousel.appendChild(group);
             }
-
-            // Llamar al inicializador del carrusel (si existe) tras inyectar el DOM
             if (typeof iniciarCarrusel === 'function') {
               setTimeout(() => iniciarCarrusel(), 50);
             }
 
-            // Señalamos que ya cargamos testimonios desde landing para evitar doble carga
             window.LANDING_TESTIMONIES_LOADED = true;
           } else {
             carousel.innerHTML = '<p class="small">No hay testimonios disponibles</p>';
@@ -217,6 +205,7 @@ window.addEventListener("load", () => { // espera a que la página cargue comple
       }
     })
     .catch((err) => {
-      console.error("[EventoLanding] Error cargando landing:", err); // Manejo de errores
+      // Manejo de errores
+      console.error("[EventoLanding] Error cargando landing:", err);
     });
 });
