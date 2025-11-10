@@ -16,7 +16,7 @@ export class TestimoniesService {
     const ent = this.testimonyRepo.create(
       createTestimonyDto as Partial<Testimony>,
     );
-    ent.landing = { id: 1 } as any; // Asigna Landing 1 por defecto
+    ent.landing = { id: 1 } as any; //quemo landing id
     return this.testimonyRepo.save(ent);
   }
   async findAllTestimonies() {
